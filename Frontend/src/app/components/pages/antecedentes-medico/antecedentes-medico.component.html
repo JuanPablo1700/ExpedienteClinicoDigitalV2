@@ -1,0 +1,70 @@
+<header class="row">
+    <div>
+        <a routerLink="/home">
+            <img src="/assets/img/logo.png" alt="logo">
+        </a>
+    </div>
+    <div class="name-img">
+        <p>Nombre del Médico</p>
+        <img src="/assets/img/doctor.png" alt="logoMedico"/>
+    </div>
+</header>
+<main>
+    <div class="grid-layout">
+      <div class="grid-lateral">
+        <a routerLink="/diagnosticoMedico" class="button-1">Diagnóstico</a>
+            <a routerLink="/medicamentoMedico" class="button-2">Medicamento</a>
+            <a routerLink="/antecedentesMedico" class="button-3">Antecedentes</a>
+            <a routerLink="/subirArchivoMedico" class="button-4">Subir archivo</a>
+      </div>
+
+      <div class="grid-principal">
+        
+        <div class="nombre">
+          <p class="nPaciente">Paciente: Matthew C.</p>
+        </div>
+        <div class="grid-contenido">
+          <div class="medicamento">
+            <p class="etiqueta">Tipo de antecedente</p>
+            <input type="text" placeholder="Antecedente" />
+          </div>
+          <div class="via">
+            <p class="etiqueta">Parentesco</p>
+            <input type="text" placeholder="Parentesco" />
+          </div>
+        
+          
+          <div class="notas">
+            <p class="etiqueta">Observaciones</p>
+            <textarea
+              cols="30"
+              rows="5"
+              placeholder="Observaciones"
+            ></textarea>
+            <div class="btn">
+                <a href="#">Agregar</a>
+              </div>
+          </div>
+          <div class="tabla">
+            <table>
+              <tr>
+                <th>Antecedente</th>
+                <th>Parentesco</th>
+                <th>Observaciones</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>                    
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
