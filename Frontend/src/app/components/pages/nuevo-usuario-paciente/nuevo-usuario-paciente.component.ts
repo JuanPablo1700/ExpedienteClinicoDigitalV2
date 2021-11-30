@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../services/auth.service";
 
 @Component({
   selector: 'app-nuevo-usuario-paciente',
@@ -21,13 +22,19 @@ export class NuevoUsuarioPacienteComponent implements OnInit {
     password: ""
   }
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   registrar() {
-    console.log(this.user);
+    this.authService.registrar(this.user)
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
   }
 
 }
