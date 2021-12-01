@@ -10,22 +10,22 @@
 </header>
 <main>
   <div class="grid-layout">
-    <div class="contenedor">
+    <form (submit)="iniciarSesion()" class="contenedor">
       <div class="contenedor-info">
         <div class="info-mail-pass">
           <p class="etiqueta">CURP</p>
-          <input type="text" placeholder="CURP" />
+          <input type="text" [(ngModel)]="user.curp" placeholder="CURP" [ngModelOptions]="{standalone: true}"/>
         </div>
         <div class="info-mail-pass">
           <p class="etiqueta">Contraseña</p>
-          <input type="password" placeholder="Contraseña" />
+          <input type="password" [(ngModel)]="user.password" placeholder="Contraseña" [ngModelOptions]="{standalone: true}"/>
         </div>
       </div>
       <div class="botones">
         <a routerLink="/nuevoUsuarioPaciente" class="btn-registrar">No tengo cuenta</a>
-        <a routerLink="/principalPaciente" class="btn-ingresar">Ingresar</a>
+        <button type="submit" class="btn-ingresar">Ingresar</button>
       </div>
-    </div>
+    </form>
     <div class="pag-img-principal">
       <a routerLink="/home">Regresar a la página principal</a>
       <img src="/assets/img/img_inicio.png" alt="imagen inicio" />

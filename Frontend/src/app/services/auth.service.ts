@@ -13,4 +13,8 @@ export class AuthService {
   registrar(user: any) {
     return this.http.post<any>(this.URL + '/registrar', user);
   }
+
+  iniciarSesion(user: any) {
+    return this.http.post<any>(this.URL + '/iniciarSesion', user);
+  }
 }

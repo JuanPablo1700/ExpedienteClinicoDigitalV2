@@ -43,7 +43,7 @@ router.post('/registrar', async (req, res) => {
   res.status(200).json({ token });
 });
 
-router.post("/inisiarSecion", async (req, res) => {
+router.post("/iniciarSesion", async (req, res) => {
   const { curp, password } = req.body;
   const user = await User.findOne({ curp });
   if (!user) return res.status(401).send("La curp es incorrecta.");
