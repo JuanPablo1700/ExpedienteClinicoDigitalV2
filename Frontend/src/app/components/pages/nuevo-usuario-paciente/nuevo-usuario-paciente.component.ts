@@ -11,17 +11,17 @@ export class NuevoUsuarioPacienteComponent implements OnInit {
 
   user = {
     nombre: "",
-    apeP: "",
-    apeM: "",
+    apellidoPaterno: "",
+    apellidoMaterno: "",
     genero: "",
-    fecha: "",
+    fechaNacimiento: "",
     curp: "",
     tipoSangre: "",
     estado: "",
     ciudad: "",
     cp: "",
     password: ""
-  }
+  };
 
   constructor(
     private authService: AuthService,
@@ -37,6 +37,7 @@ export class NuevoUsuarioPacienteComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
+          localStorage.setItem('curp', res.curp);
           this.router.navigate(['/principalPaciente']);
         },
         err => console.log(err)

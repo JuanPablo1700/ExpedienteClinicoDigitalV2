@@ -10,21 +10,33 @@
 </header>
 <main>
   <div class="grid-layout">
-    <div class="contenedor">
+    <form (submit)="iniciarSesionMedico()" class="contenedor">
       <div class="contenedor-info">
         <div class="info-mail-pass">
           <p class="etiqueta">Correo</p>
-          <input type="text" placeholder="Correo" />
+          <input 
+            type="text" 
+            name="correo"
+            id="correo"
+            placeholder="Correo"
+            [(ngModel)]="medico.correo"  
+          />
         </div>
         <div class="info-mail-pass">
           <p class="etiqueta">Contraseña</p>
-          <input type="password" placeholder="Contraseña" />
+          <input 
+            type="password" 
+            name="password"
+            id="password"
+            placeholder="Contraseña" 
+            [(ngModel)]="medico.password"
+          />
         </div>
       </div>
       <div class="botones">
-        <a routerLink="/principalMedico" class="btn-ingresar">Ingresar</a>
+        <a (click)="iniciarSesionMedico()" class="btn-ingresar">Ingresar</a>
       </div>
-    </div>
+    </form>
     <div class="pag-img-principal">
       <a routerLink="/home">Regresar a la página principal</a>
       <img src="/assets/img/img_inicio.png" alt="imagen inicio" />

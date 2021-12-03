@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-iniciar-sesion-medico',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IniciarSesionMedicoComponent implements OnInit {
 
-  constructor() { }
+  medico = {
+    correo: "",
+    password: ""
+  }
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  iniciarSesionMedico() {
+    this.authService.iniciarSesionMedico(this.medico)
+      .subscribe(
+        res => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('correo', res.correo);
+          this.router.navigate(['/principalMedico']);
+        },
+        err => console.log(err)
+      )
   }
 
 }

@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class IniciarSesionPacienteComponent implements OnInit {
 
   user = {
+    id: "",
     curp: "",
     password: ""
   }
@@ -28,6 +29,7 @@ export class IniciarSesionPacienteComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
+          localStorage.setItem('id', res.id);
           this.router.navigate(['/principalPaciente']);
         },
         err => console.log(err)

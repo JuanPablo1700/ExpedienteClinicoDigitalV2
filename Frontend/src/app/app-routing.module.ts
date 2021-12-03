@@ -14,21 +14,23 @@ import { MedicamentoMedicoComponent } from './components/pages/medicamento-medic
 import { AntecedentesMedicoComponent } from './components/pages/antecedentes-medico/antecedentes-medico.component';
 import { SubirArchivoMedicoComponent } from './components/pages/subir-archivo-medico/subir-archivo-medico.component';
 
+import { AuthGuard } from "./auth.guard";
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: BodyComponent },
   { path: 'iniciarSesionPaciente', component: IniciarSesionPacienteComponent },
   { path: 'iniciarSesionMedico', component: IniciarSesionMedicoComponent },
   { path: 'nuevoUsuarioPaciente', component: NuevoUsuarioPacienteComponent},
-  { path: 'principalPaciente', component: PrincipalPacienteComponent},
-  { path: 'historialMedicoPaciente', component: HistorialMedicoPacienteComponent },
-  { path: 'consultaSeleccionada', component: ConsultaSeleccionadaComponent },
-  { path: 'principalMedico', component: PrincipalMedicoComponent },
-  { path: 'buscarPacienteMedico', component: BuscarPacienteMedicoComponent},
-  { path: 'diagnosticoMedico', component: DiagnosticoMedicoComponent },
-  { path: 'medicamentoMedico', component: MedicamentoMedicoComponent },
-  { path: 'antecedentesMedico', component: AntecedentesMedicoComponent },
-  { path: 'subirArchivoMedico', component: SubirArchivoMedicoComponent }
+  { path: 'principalPaciente', component: PrincipalPacienteComponent, canActivate: [AuthGuard]},
+  { path: 'historialMedicoPaciente', component: HistorialMedicoPacienteComponent, canActivate: [AuthGuard]},
+  { path: 'consultaSeleccionada', component: ConsultaSeleccionadaComponent, canActivate: [AuthGuard]},
+  { path: 'principalMedico', component: PrincipalMedicoComponent, canActivate: [AuthGuard]},
+  { path: 'buscarPacienteMedico', component: BuscarPacienteMedicoComponent, canActivate: [AuthGuard]},
+  { path: 'diagnosticoMedico', component: DiagnosticoMedicoComponent, canActivate: [AuthGuard]},
+  { path: 'medicamentoMedico', component: MedicamentoMedicoComponent, canActivate: [AuthGuard]},
+  { path: 'antecedentesMedico', component: AntecedentesMedicoComponent, canActivate: [AuthGuard]},
+  { path: 'subirArchivoMedico', component: SubirArchivoMedicoComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

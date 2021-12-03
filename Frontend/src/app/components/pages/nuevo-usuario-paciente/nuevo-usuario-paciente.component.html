@@ -11,51 +11,121 @@
 <main>
     <form (submit)="registrar()" class="grid-container-main">
         <div class="nombre">
-            <p class="etiqueta">Nombre</p>
-            <input type="text" [(ngModel)]="user.nombre" name="name" placeholder="Escribe tu nombre" required="true" [ngModelOptions]="{standalone: true}"/>
+            <label for="name" class="etiqueta">Nombre</label>
+            <input 
+                type="text" 
+                name="nombre"
+                id="nombre" 
+                placeholder="Escribe tu nombre"
+                [(ngModel)]="user.nombre"
+            />
         </div>
         <div class="apeM">
             <p class="etiqueta">Apellido paterno</p>
-            <input type="text" [(ngModel)]="user.apeP" name="apeP" placeholder="Apellido Paterno" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="text" 
+                name="apellidoPaterno" 
+                id="apellidoPaterno"
+                placeholder="Apellido Paterno" 
+                [(ngModel)]="user.apellidoPaterno" 
+            />
         </div>
         <div class="apeP">
             <p class="etiqueta">Apellido materno</p>
-            <input type="text" [(ngModel)]="user.apeM" name="ApellidoM" placeholder="Apellido Materno" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="text" 
+                name="apellidoMaterno"
+                id="apellidoMaterno"
+                placeholder="Apellido Materno" 
+                [(ngModel)]="user.apellidoMaterno" 
+            />
         </div>
         <div class="gen">
             <label class="etiqueta">Género</label><br/>
-            <input type="radio" id="femenino" name="genero" value="femenino" [(ngModel)]="user.genero" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="radio" 
+                id="generoF"
+                name="generoF" 
+                value="femenino" 
+                [(ngModel)]="user.genero"/>
             <label for="femenino">Femenino</label><br />
-            <input type="radio" id="masculino" name="genero" value="masculino" [(ngModel)]="user.genero" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="radio" 
+                id="generoM" 
+                name="generoM" 
+                value="masculino" 
+                [(ngModel)]="user.genero" 
+            />
             <label for="masculino">Masculino</label><br />
         </div>
         <div class="fecha">
             <p class="etiqueta">Fecha de nacimmiento</p>
-            <input type="date" [(ngModel)]="user.fecha" placeolder="Fecha nacimiento" [ngModelOptions]="{standalone: true}">
+            <input 
+                type="date"
+                name="fechaNacimiento"
+                id="fechaNacimiento"
+                placeolder="Fecha nacimiento" 
+                [(ngModel)]="user.fechaNacimiento" 
+            />
         </div>
         <div class="curp">
             <p class="etiqueta">Curp</p>
-            <input type="text" [(ngModel)]="user.curp" name="Curp" placeholder="CURP" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="text" 
+                name="curp"
+                id="curp"
+                placeholder="CURP"
+                [(ngModel)]="user.curp" 
+            />
         </div>
         <div class="tipoS">
             <p class="etiqueta">Tipo de sangre</p>
-            <input type="text" [(ngModel)]="user.tipoSangre" name="Sangre" placeholder="Tipo Sangre" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="text" 
+                name="tipoSangre"
+                id="tipoSangre"
+                placeholder="Tipo Sangre" 
+                [(ngModel)]="user.tipoSangre" 
+            />
         </div>
         <div class="estado">
             <p class="etiqueta">Estado</p>
-            <input type="text" [(ngModel)]="user.estado" name="Estado" placeholder="Estado" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="text" 
+                name="estado"
+                id="estado"
+                placeholder="Estado" 
+                [(ngModel)]="user.estado" 
+            />
         </div>
         <div class="ciudad">
             <p class="etiqueta">Ciudad</p>
-            <input type="text" [(ngModel)]="user.ciudad" name="Ciudad" placeholder="Ciudad" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="text" 
+                name="ciudad"
+                id="ciudad" 
+                placeholder="Ciudad"
+                [(ngModel)]="user.ciudad" 
+            />
         </div>
         <div class="cp">
             <p class="etiqueta">C.P.</p>
-            <input type="text" [(ngModel)]="user.cp" name="Cp" placeholder="Codigo Postal" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+                type="number" 
+                name="cp"
+                id="cp"
+                placeholder="Codigo Postal" 
+                [(ngModel)]="user.cp" 
+            />
         </div>
         <div class="direccion">
             <p class="etiqueta">Contraseña</p>
-            <input type="password" [(ngModel)]="user.password" name="Password" placeholder="Password" required="true" [ngModelOptions]="{standalone: true}"/>
+            <input 
+            type="password" 
+            [(ngModel)]="user.password" 
+            name="Password" 
+            placeholder="Password" 
+        />
         </div>
         <div class="btn">
             <button type="submit">

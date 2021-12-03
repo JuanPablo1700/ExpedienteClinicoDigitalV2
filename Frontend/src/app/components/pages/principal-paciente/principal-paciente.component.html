@@ -6,7 +6,8 @@
     </div>
     <div class="menu-name-img">
       <div class="menu"><a routerLink="/historialMedicoPaciente">Mostrar historial clínico</a></div>
-      <p>Matthew C.</p>
+      <div class="menu"><a style="cursor: pointer;" (click)="authService.logout()">Cerrar Sesión</a></div>
+      <p>Nombre del paciente</p>
       <img src="/assets/img/doctor.png" alt="Foto de usuario" />
     </div>
   </header>
@@ -18,13 +19,13 @@
       </div>
       <div class="general">
         <p class="etiqueta">Nombre:</p>
-        <p class="consulta">Matthew Cutberth</p>
+        <p class="consulta">{{datos.nombre}} {{datos.apellidoPaterno}} {{datos.apellidoMaterno}}</p>
         <p class="etiqueta">Nacimiento:</p>
-        <p class="consulta">10 de junio de 1971</p>
-        <p class="etiqueta">Edad:</p>
-        <p class="consulta">50 años</p>
+        <p class="consulta">{{datos.fechaNacimiento}}</p>
+        <p class="etiqueta">Genero:</p>
+        <p class="consulta">{{datos.genero}}</p>
         <p class="etiqueta">Tipo de sangre:</p>
-        <p class="consulta">A+</p>
+        <p class="consulta">{{datos.tipoSangre}}</p>
       </div>
       <div class="altura">
         <p class="etiqueta">Altura:</p>

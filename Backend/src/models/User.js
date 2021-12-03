@@ -1,17 +1,39 @@
 const { schema, model, SchemaTypes, Schema } = require('mongoose');
 
 const userSchema = new Schema({
-    nombre: String,
-    apellidoPaterno: String,
-    apellidoMaterno: String,
-    genero: String,
-    fechaNacimiento: Date,
-    curp: String,
-    tipoSangre: String,
-    estado: String,
-    ciudad: String,
-    cp: Number,
-    password: String
+    nombre: {
+        type: String
+    },
+    apellidoPaterno: {
+        type: String
+    },
+    apellidoMaterno: {
+        type: String
+    },
+    genero: {
+        type: String
+    },
+    fechaNacimiento: {
+        type: Date
+    },
+    curp: {
+        type: String
+    },
+    tipoSangre: {
+        type: String
+    },
+    estado: {
+        type: String
+    },
+    ciudad: {
+        type: String
+    },
+    cp: {
+        type: Number
+    },
+    password: {
+        type: String
+    }
 });
 
 module.exports = model('User', userSchema);
