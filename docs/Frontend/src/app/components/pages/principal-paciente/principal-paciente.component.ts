@@ -48,12 +48,11 @@ export class PrincipalPacienteComponent implements OnInit {
   }
 
   obtenerDatos() {
-    this.authService.datosPaciente(localStorage.getItem('id_paciente')).subscribe(data => {
-      console.log(data);
-      this.datos = data;
-    }, error => {
-      console.log(error);
-    })
+    this.authService.datosPaciente(localStorage.getItem('id_paciente')).subscribe({
+      next: (data) => this.datos = data,
+      error: (error) => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 
   Actualizar() {
@@ -74,7 +73,7 @@ export class PrincipalPacienteComponent implements OnInit {
       },
       error: err => console.log(err),
       complete: () => console.info('complete')
-    })
+    });
   }
 
 }

@@ -53,11 +53,10 @@ export class AntecedentesMedicoComponent implements OnInit {
 
   //obtener datos del médico 
   obtenerDatosMedico() {
-    this.authService.datosMedico(localStorage.getItem('id')).subscribe(data => {
-      console.log(data);
-      this.datosMedico = data;
-    }, error => {
-      console.log(error);
-    })
+    this.authService.datosMedico(localStorage.getItem('id')).subscribe({
+      next: (data) => this.datosMedico = data,
+      error: (error) => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 }

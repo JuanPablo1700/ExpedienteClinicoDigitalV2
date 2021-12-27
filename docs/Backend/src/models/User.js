@@ -14,7 +14,7 @@ const userSchema = new Schema({
         type: String
     },
     fechaNacimiento: {
-        type: Date
+        type: String
     },
     curp: {
         type: String

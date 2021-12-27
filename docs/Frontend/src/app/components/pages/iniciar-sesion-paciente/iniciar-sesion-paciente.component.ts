@@ -24,16 +24,15 @@ export class IniciarSesionPacienteComponent implements OnInit {
   }
 
   iniciarSesion() {
-    this.authService.iniciarSesion(this.user)
-      .subscribe(
-        res => {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('id_paciente', res.id);
-          this.router.navigate(['/principalPaciente']);
-        },
-        err => console.log(err)
-      )
+    this.authService.iniciarSesion(this.user).subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('id_paciente', res.id);
+        this.router.navigate(['/principalPaciente']);
+      },
+      error: (err) => console.log(err),
+      complete: () => console.info('Complete')
+    });
   }
 
 }

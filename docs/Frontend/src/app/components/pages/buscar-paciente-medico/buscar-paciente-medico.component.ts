@@ -37,13 +37,14 @@ export class BuscarPacienteMedicoComponent implements OnInit {
   ngOnInit(): void { }
 
   buscarPaciente() {
-    this.authService.buscarPaciente(this.searchForm.get('curp')?.value).subscribe(data => {
-      this.datosPaciente = data.user;
-      localStorage.setItem('id_paciente', this.datosPaciente[0]._id );
-      console.log(this.datosPaciente);
-    }, error => {
-      console.log(error);
-    })
+    this.authService.buscarPaciente(this.searchForm.get('curp')?.value).subscribe({
+      next: (data) => {
+        this.datosPaciente = data.user;
+        localStorage.setItem('id_paciente', this.datosPaciente[0]._id );
+      },
+      error: (error) => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 
 }

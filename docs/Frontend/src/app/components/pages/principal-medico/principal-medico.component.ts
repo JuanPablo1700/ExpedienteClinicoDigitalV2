@@ -10,27 +10,27 @@ export class PrincipalMedicoComponent implements OnInit {
 
   datos = {
     nombre: String,
-    fechaNacimiento: Date,
+    fechaNacimiento: String,
     especialidad: String,
     clinica:String,
     universidad: String,
-    cedula: String
+    cedula: String,
+    genero: String
   }
 
   constructor(
     public authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.obtenerDatos();
   }
 
   obtenerDatos() {
-    this.authService.datosMedico(localStorage.getItem('id')).subscribe(data => {
-      console.log(data);
-      this.datos = data;
-    }, error => {
-      console.log(error);
-    })
+    this.authService.datosMedico(localStorage.getItem('id')).subscribe({
+      next: (data) => this.datos = data,
+      error: (error) => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 }

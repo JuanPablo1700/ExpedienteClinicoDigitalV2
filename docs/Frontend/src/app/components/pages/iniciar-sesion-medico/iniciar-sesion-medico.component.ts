@@ -23,17 +23,16 @@ export class IniciarSesionMedicoComponent implements OnInit {
   }
 
   iniciarSesionMedico() {
-    this.authService.iniciarSesionMedico(this.medico)
-      .subscribe(
-        res => {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('id', res.id);
-          localStorage.setItem('nombreUsuario', res.nombreMedico);
-          this.router.navigate(['/principalMedico']);
-        },
-        err => console.log(err)
-      )
+    this.authService.iniciarSesionMedico(this.medico).subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('id', res.id);
+        localStorage.setItem('nombreUsuario', res.nombreMedico);
+        this.router.navigate(['/principalMedico']);
+      },
+      error: (err) => console.log(err),
+      complete: () => console.info('Complete')
+    });
   }
 
 }

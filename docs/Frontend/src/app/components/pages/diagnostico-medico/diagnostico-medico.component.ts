@@ -12,12 +12,13 @@ export class DiagnosticoMedicoComponent implements OnInit {
 
   datosMedico = {
     nombre: String,
-    fechaNacimiento: Date,
+    fechaNacimiento: String,
     especialidad: String,
     clinica: String,
     universidad: String,
     password: String,
-    cedula: Number
+    cedula: Number,
+    genero: String
   }
   constructor(
     private authService: AuthService,
@@ -25,10 +26,7 @@ export class DiagnosticoMedicoComponent implements OnInit {
   ) {
     this.diagnosticoForm = this.fb.group({
       diagGeneral: [''],
-      descrip: [''],
-      peso: [''],
-      altura: [''],
-      alergia: ['']
+      descrip: ['']
     })
   }
 
@@ -43,16 +41,10 @@ export class DiagnosticoMedicoComponent implements OnInit {
     const diagnostico = {
       diagGeneral: this.diagnosticoForm.get('diagGeneral')?.value,
       descrip: this.diagnosticoForm.get('descrip')?.value,
-      peso: this.diagnosticoForm.get('peso')?.value,
-      altura: this.diagnosticoForm.get('altura')?.value,
-      alergia: this.diagnosticoForm.get('alergia')?.value
     }
 
     localStorage.setItem('diagGeneral', diagnostico.diagGeneral)
     localStorage.setItem('descrip', diagnostico.descrip)
-    localStorage.setItem('peso', diagnostico.peso)
-    localStorage.setItem('altura', diagnostico.altura)
-    localStorage.setItem('alergia', diagnostico.alergia)
   }
 
 
@@ -60,9 +52,6 @@ export class DiagnosticoMedicoComponent implements OnInit {
       const diagnostico = {
       diagGeneral: localStorage.getItem('diagGeneral'),
       descrip: localStorage.getItem('descrip'),
-      peso: localStorage.getItem('peso'),
-      altura: localStorage.getItem('altura'),
-      alergia: localStorage.getItem('alergia')
     }
     this.diagnosticoForm.setValue(diagnostico)
 
@@ -70,11 +59,10 @@ export class DiagnosticoMedicoComponent implements OnInit {
 
   //obtener datos del médico 
   obtenerDatosMedico() {
-    this.authService.datosMedico(localStorage.getItem('id')).subscribe(data => {
-      console.log(data);
-      this.datosMedico = data;
-    }, error => {
-      console.log(error);
-    })
+    this.authService.datosMedico(localStorage.getItem('id')).subscribe({
+      next: (data) => this.datosMedico = data,
+      error: (error) => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 }

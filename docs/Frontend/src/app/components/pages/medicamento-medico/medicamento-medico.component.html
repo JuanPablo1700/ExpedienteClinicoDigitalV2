@@ -81,7 +81,7 @@
                 <th>Notas</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="!medicamentos">
               <tr *ngFor="let medicamento of medicamentos">
                 <th scope="row"> {{medicamento.nombreM}} </th>
                 <td>{{medicamento.viaAdmon}}</td>

@@ -63,13 +63,11 @@ export class NuevoUsuarioPacienteComponent implements OnInit {
       password: this.pacienteForm.get('password')?.value,
     }
 
-    this.authService.registrar(user).subscribe(data => {
-      console.log(data)
-      this.router.navigate(['/iniciarSesionPaciente']);
-    }, error => {
-      console.log(error)
-
-    })
+    this.authService.registrar(user).subscribe({
+      next: () => this.router.navigate(['/iniciarSesionPaciente']), 
+      error: (error) => console.log(error),
+      complete:() => console.info('Complete')
+    });
   }
 
 }

@@ -27,15 +27,15 @@ export class HistorialMedicoPacienteComponent implements OnInit {
   }
 
   obtenerDatos() {
-    this.authService.datosPaciente(localStorage.getItem('id_paciente')).subscribe(data => {
-      this.nombre = data;
-    }, error => {
-      console.log(error);
-    })
+    this.authService.datosPaciente(localStorage.getItem('id_paciente')).subscribe({
+      next: (data) => this.nombre = data,
+      error: error => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 
   obtenerConsultas() {
-    
+    //Falta por desarrolar
   }
 
 }

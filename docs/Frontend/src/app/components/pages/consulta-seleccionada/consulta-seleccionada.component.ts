@@ -27,11 +27,11 @@ export class ConsultaSeleccionadaComponent implements OnInit {
   }
 
   obtenerDatos() {
-    this.authService.datosPaciente(localStorage.getItem('id_paciente')).subscribe(data => {
-      this.datos = data;
-    }, error => {
-      console.log(error);
-    })
+    this.authService.datosPaciente(localStorage.getItem('id_paciente')).subscribe({
+      next: (data) => this.datos = data,
+      error: (error) => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 
 }

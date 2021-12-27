@@ -8,7 +8,7 @@ const medicoSchema = new Schema({
         type: String
     },
     fechaNacimiento: {
-        type: Date
+        type: String
     },
     edad: {
         type: Number
@@ -23,6 +23,9 @@ const medicoSchema = new Schema({
         type: String
     },
     password: {
+        type: String
+    },
+    genero: {
         type: String
     }
 });

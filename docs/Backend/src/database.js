@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/ExpMedico', {
+mongoose.connect('mongodb+srv://EquipoJAP:EquipoJAP12345@expedienteclinicodigita.wu2kd.mongodb.net/ExpMedico', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
