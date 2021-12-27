@@ -33,6 +33,15 @@ const userSchema = new Schema({
     },
     password: {
         type: String
+    }, 
+    altura: {
+        type: Number
+    },
+    peso: {
+        type: Number
+    },
+    alergias: {
+        type: String
     }
 });
 

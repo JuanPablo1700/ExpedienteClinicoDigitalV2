@@ -29,6 +29,18 @@ export class AuthService {
     return this.http.get(this.URL + '/datosPaciente' + '/' + id);
   }
 
+  buscarPaciente(curp: any): Observable<any> {
+    return this.http.get(this.URL + '/buscarPaciente' + '/' + curp);
+  }
+
+  datosMedico(id: any): Observable<any> {
+    return this.http.get(this.URL + '/datosMedico' + '/' + id);
+  }
+
+  Actualizar(id: any, dataUpdate: any): Observable<any> {
+    return this.http.put(this.URL + '/actualizaData' + '/' + id, dataUpdate);
+  }
+
   loggedIn() {
     return !!localStorage.getItem('token');
   }
@@ -38,9 +50,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.removeItem('correo');
+    localStorage.clear();
     this.router.navigate(['/home']);
   }
 

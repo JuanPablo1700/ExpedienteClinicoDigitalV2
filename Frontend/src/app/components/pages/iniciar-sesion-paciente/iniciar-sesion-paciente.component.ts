@@ -29,7 +29,7 @@ export class IniciarSesionPacienteComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-          localStorage.setItem('id', res.id);
+          localStorage.setItem('id_paciente', res.id);
           this.router.navigate(['/principalPaciente']);
         },
         err => console.log(err)

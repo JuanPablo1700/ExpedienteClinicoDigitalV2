@@ -58,14 +58,19 @@ main {
 
 .contenedor {
     display: block;
-    margin: 3rem auto;
+    margin: 7rem auto;
+    margin-bottom: 8.5rem;
     border-radius: 5px;
-    border: 1px solid #c4c4c4;
+    border: 2px solid #c4c4c4;
     padding: 1rem;
     width: 55rem;
     justify-content: center;
     text-decoration: none;
     color: black;
+}
+
+.contenedor:hover {
+    box-shadow: #8BCAD9 2px 3px;
 }
 
 .contenedor:visited {
@@ -92,11 +97,12 @@ p{
 @media(max-width:765px) {
     .contenedor {
         display: block;
-        margin: 3rem auto;
+        margin: 7rem auto;
+        margin-bottom: 8.5rem;
         border-radius: 5px;
-        border: 1px solid #c4c4c4;
+        border: 2px solid #c4c4c4;
         padding: 1rem;
-        width: 45rem;
+        width: 55rem;
         justify-content: center;
         text-decoration: none;
         color: black;
@@ -114,11 +120,12 @@ p{
 @media(max-width:576px) {
     .contenedor {
         display: block;
-        margin: 3rem auto;
+        margin: 7rem auto;
+        margin-bottom: 8.5rem;
         border-radius: 5px;
-        border: 1px solid #c4c4c4;
+        border: 2px solid #c4c4c4;
         padding: 1rem;
-        width: 40rem;
+        width: 55rem;
         justify-content: center;
         text-decoration: none;
         color: black;

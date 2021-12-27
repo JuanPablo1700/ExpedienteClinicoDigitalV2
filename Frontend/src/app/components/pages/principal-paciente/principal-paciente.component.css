@@ -88,7 +88,14 @@ header a img {
     width: 60%;
     margin-right: 0;
 }
-
+button{
+    margin-right: 1rem;
+    border: 1px solid #057982;
+    border-radius: 3px;
+    color: rgb(38, 104, 126);
+    text-decoration: none;
+    padding: 2px;
+}
 .general{
     grid-area: general;
 } 

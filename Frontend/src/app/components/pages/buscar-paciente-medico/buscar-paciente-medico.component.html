@@ -5,7 +5,8 @@
         </a>
     </div>
     <div class="name-img">
-        <p>Nombre del Medico</p>
+        <div class="menu"><a style="cursor: pointer;" (click)="authService.logout()">Cerrar Sesión</a></div>
+        <p>{{usuario.nombreMedico}}</p>
         <img src="/assets/img/doctor.png" alt="logoMedico"/>
     </div>
 </header>
@@ -13,78 +14,37 @@
     <div>
         <h1>Busqueda de pacientes</h1>
     </div>
-    <div>
+    <form
+        (submit)="buscarPaciente()"
+        [formGroup]="searchForm"
+    >
         <p class="curp">CURP</p>
-        <input type="text" placeholder="CURP">
+        <input 
+            type="text" 
+            placeholder="CURP"
+            formControlName="curp"
+        >
+        <button type="submit">Buscar</button>
+    </form>
+    <div *ngIf="datosPaciente[0].nombre !== ''">
+        <a routerLink="/principalPaciente" class="contenedor"  *ngFor="let datos of datosPaciente">
+            <div class="contenedor-info">
+                <div class="info-paciente">
+                    <p class="etiqueta">Nombre: </p>
+                    <p class="info">{{datos.nombre}} {{datos.apellidoPaterno}} {{datos.apellidoMaterno}}</p>
+                </div>
+                <div class="info-paciente">
+                    <p class="etiqueta">Nacimiento: </p>
+                    <p class="info">{{datos.fechaNacimiento}}</p>
+                </div>
+                <div class="info-paciente">
+                    <p class="etiqueta">CURP: </p>
+                    <p class="info">{{datos.curp}}</p>
+                </div>
+            </div>
+            <div class="contenedor-imagen">
+                <img src="/assets/img/doctor.png" alt="img-paciente">
+            </div>
+        </a>
     </div>
-    <a routerLink="/principalPaciente" class="contenedor">
-        <div class="contenedor-info">
-            <div class="info-paciente">
-                <p class="etiqueta">Nombre: </p>
-                <p class="info">Juan Pablo Campos</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Nacimiento: </p>
-                <p class="info">17 de agosto de 2000</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Edad: </p>
-                <p class="info">21</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Tipo de sangre: </p>
-                <p class="info">A+</p>
-            </div>
-        </div>
-        <div class="contenedor-imagen">
-            <img src="/assets/img/doctor.png" alt="img-paciente">
-        </div>
-    </a>
-    <P class="Pacientes-Recientes">Pacientes recientes</P>
-    <a routerLink="/principalPaciente" class="contenedor">
-        <div class="contenedor-info">
-            <div class="info-paciente">
-                <p class="etiqueta">Nombre: </p>
-                <p class="info">Juan Pablo Campos</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Nacimiento: </p>
-                <p class="info">17 de agosto de 2000</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Edad: </p>
-                <p class="info">21</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Tipo de sangre: </p>
-                <p class="info">A+</p>
-            </div>
-        </div>
-        <div class="contenedor-imagen">
-            <img src="/assets/img/doctor.png" alt="img-paciente">
-        </div>
-    </a>
-    <a routerLink="/principalPaciente" class="contenedor">
-        <div class="contenedor-info">
-            <div class="info-paciente">
-                <p class="etiqueta">Nombre: </p>
-                <p class="info">Juan Pablo Campos</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Nacimiento: </p>
-                <p class="info">17 de agosto de 2000</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Edad: </p>
-                <p class="info">21</p>
-            </div>
-            <div class="info-paciente">
-                <p class="etiqueta">Tipo de sangre: </p>
-                <p class="info">A+</p>
-            </div>
-        </div>
-        <div class="contenedor-imagen">
-            <img src="/assets/img/doctor.png" alt="img-paciente">
-        </div>
-    </a>
 </main>

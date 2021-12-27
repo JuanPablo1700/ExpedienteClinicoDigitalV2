@@ -5,7 +5,7 @@
     </a>
   </div>
   <div class="name-img">
-    <p>Nombre del Médico</p>
+    <p>{{ datosMedico.nombre }}</p>
     <img src="/assets/img/doctor.png" alt="logoMedico" />
   </div>
 </header>
@@ -22,22 +22,38 @@
       <div class="nombre">
         <p class="nPaciente">Paciente: Matthew C.</p>
       </div>
-      <div class="grid-contenido">
+      <form
+        class="grid-contenido"
+        (submit)="guardarMedicam()"
+        [formGroup]="medicamentoForm"
+      >
         <div class="medicamento">
           <p class="etiqueta">Nombre del medicamento</p>
-          <input type="text" placeholder="Medicamento" />
+          <input
+            type="text"
+            placeholder="Medicamento"
+            formControlName="nombreM"
+          />
         </div>
         <div class="via">
           <p class="etiqueta">Vía de administración</p>
-          <input type="text" placeholder="Vía" />
+          <input type="text" placeholder="Vía" formControlName="viaAdmon" />
         </div>
         <div class="frecuencia">
           <p class="etiqueta">Frecuencia de administración</p>
-          <input type="text" placeholder="Frecuencia" />
+          <input
+            type="text"
+            placeholder="Frecuencia"
+            formControlName="frecuencia"
+          />
         </div>
         <div class="duracion">
           <p class="etiqueta">Duración del medicamento</p>
-          <input type="text" placeholder="Duración" />
+          <input
+            type="text"
+            placeholder="Duración"
+            formControlName="duracion"
+          />
         </div>
 
         <div class="notas">
@@ -46,44 +62,37 @@
             cols="30"
             rows="5"
             placeholder="Agrega aquí algo importante"
+            formControlName="notas"
           ></textarea>
           <div class="btn">
-            <a href="#">Agregar</a>
+            <a (click)="guardarMedicam()" type="submit" style="cursor: pointer"
+              >Agregar</a
+            >
           </div>
         </div>
         <div class="tabla">
           <table>
-            <tr>
-              <th>Medicamento</th>
-              <th>Vía</th>
-              <th>Frecuencia</th>
-              <th>Duración</th>
-              <th>Notas</th>
-            </tr>
-            <tr>
-              <td>Paracetamol</td>
-              <td>Oral</td>
-              <td>Cada 8 hrs</td>
-              <td>Por 3 días</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            <thead>
+              <tr>
+                <th>Medicamento</th>
+                <th>Vía</th>
+                <th>Frecuencia</th>
+                <th>Duración</th>
+                <th>Notas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medicamento of medicamentos">
+                <th scope="row"> {{medicamento.nombreM}} </th>
+                <td>{{medicamento.viaAdmon}}</td>
+                <td>{{medicamento.frecuencia}}</td>
+                <td>{{medicamento.duracion}}</td>
+                <td>{{medicamento.notas}}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </main>

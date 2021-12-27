@@ -8,40 +8,19 @@ const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => res.send("Hello world"));
 
-router.post('/registrar', async (req, res) => {
-  const {
-    nombre,
-    apellidoPaterno,
-    apellidoMaterno,
-    genero,
-    fechaNacimiento,
-    curp,
-    tipoSangre,
-    estado,
-    ciudad,
-    cp,
-    password
-  } = req.body;
+router.post('/registrar', async(req, res) => {
+  try {
+      let user;
 
-  const newUser = new User({
-    nombre,
-    apellidoPaterno,
-    apellidoMaterno,
-    genero,
-    fechaNacimiento,
-    curp,
-    tipoSangre,
-    estado,
-    ciudad,
-    cp,
-    password,
-  });
-  console.log(newUser);
-  await newUser.save();
+      //Crear usuario
+      user = new User(req.body);
 
-  const token = jwt.sign({ _id: newUser._id }, "secretKey");
-
-  res.status(200).json({ token, curp });
+      await user.save();
+      res.send(user);
+  }catch (error){
+      console.log(error);
+      res.status(500).send('Hubo un error');
+  }
 });
 
 router.post("/iniciarSesion", async (req, res) => {
@@ -59,15 +38,37 @@ router.post("/iniciarSesion", async (req, res) => {
 router.post("/iniciarSesionMedico", async (req, res) => {
   const { correo, password } = req.body;
   const medico = await Medico.findOne({ correo });
+  let id = medico._id;
+  let nombreMedico = medico.nombre;
   if (!medico) return res.status(401).send("El correo es incorrecto.");
   if (medico.password !== password)
     return res.status(401).send("Contraseña incorrecta.");
 
   const token = jwt.sign({ _id: medico._id }, "secretKey");
-  return res.status(200).json({ token, correo });
+  return res.status(200).json({ token, id, nombreMedico });
 });
 
-//A prueba------------------------------
+router.put('/actualizaData/:id', async (req, res) => {
+  try {
+    const { altura, peso, alergias } = req.body;
+    let datos = await User.findById(req.params.id);
+
+    datos.altura = altura;
+    datos.peso = peso;
+    datos.alergias = alergias;
+
+    datos = await User.findOneAndUpdate({ _id: req.params.id}, datos, {new: true});
+
+    res.json(datos);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Hubo un error.')
+  }
+
+});
+
+
 router.get("/datosPaciente/:id", async (req, res) => {
   try {
     let user = await User.findById(req.params.id);
@@ -83,6 +84,40 @@ router.get("/datosPaciente/:id", async (req, res) => {
     return res.status(500).send('Hubo un error')
   }
 });
+
+//Buscar un paciente por su curp
+router.get("/buscarPaciente/:curp", async (req, res) => {
+  try {
+    let user = await User.find({"curp": req.params.curp});
+    let id_paciente = user._id;
+    if(!user) {
+      res.status(404).json({msg: 'No existe el usuario'})
+    }
+
+    return res.json({user, id_paciente});
+
+  }catch (error) {
+    console.log(error);
+    return res.status(500).send('Hubo un error')
+  }
+});
+
+//medico
+router.get("/datosMedico/:id", async (req, res) => {
+  try {
+    let medico = await Medico.findById(req.params.id);
+    if(!medico) {
+      res.status(404).json({msg: 'No existe el usuario'})
+    }
+
+    return res.json(medico);
+
+  }catch (error) {
+    console.log(error);
+    return res.status(500).send('Hubo un error')
+  }
+});
+
 
 module.exports = router;
 
@@ -100,3 +135,5 @@ function verifyToken(req, res, next) {
   req.userId = payload._id;
   next();
 }
+
+

@@ -56,10 +56,9 @@ header a img {
   display: grid;
   grid-template-areas:
     "titulo titulo titulo"
-    "general altura ultimo"
-    "tratamiento suplemento ultimo";
+    "general altura ultimo";
   grid-template-columns: auto auto auto;
-  grid-template-rows: 10rem 1fr 1fr;
+  grid-template-rows: 10rem 1fr;
   height: 100%;
   flex-wrap: wrap;
 }

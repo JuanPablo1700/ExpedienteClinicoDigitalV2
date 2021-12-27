@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-principal-medico',
@@ -7,11 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalMedicoComponent implements OnInit {
 
-
-
-  constructor() { }
-
-  ngOnInit(): void {
+  datos = {
+    nombre: String,
+    fechaNacimiento: Date,
+    especialidad: String,
+    clinica:String,
+    universidad: String,
+    cedula: String
   }
 
+  constructor(
+    public authService: AuthService
+  ) { }
+
+  ngOnInit(): void {
+    this.obtenerDatos();
+  }
+
+  obtenerDatos() {
+    this.authService.datosMedico(localStorage.getItem('id')).subscribe(data => {
+      console.log(data);
+      this.datos = data;
+    }, error => {
+      console.log(error);
+    })
+  }
 }

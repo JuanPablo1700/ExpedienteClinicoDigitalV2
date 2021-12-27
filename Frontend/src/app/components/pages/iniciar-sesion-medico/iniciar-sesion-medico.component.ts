@@ -28,7 +28,8 @@ export class IniciarSesionMedicoComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-          localStorage.setItem('correo', res.correo);
+          localStorage.setItem('id', res.id);
+          localStorage.setItem('nombreUsuario', res.nombreMedico);
           this.router.navigate(['/principalMedico']);
         },
         err => console.log(err)

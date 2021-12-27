@@ -1,136 +1,236 @@
 <header class="row">
-    <div>
-      <a routerLink="/home">
-        <img src="/assets/img/logo.png" alt="logo" />
-      </a>
-    </div>
-    <div class="menu-name-img">
-      <p>Nuevo usuario</p>
-    </div>
-  </header>
+  <div>
+    <a routerLink="/home">
+      <img src="/assets/img/logo.png" alt="logo" />
+    </a>
+  </div>
+  <div class="menu-name-img">
+    <p>Nuevo usuario</p>
+  </div>
+</header>
 <main>
-    <form (submit)="registrar()" class="grid-container-main">
-        <div class="nombre">
-            <label for="name" class="etiqueta">Nombre</label>
-            <input 
-                type="text" 
-                name="nombre"
-                id="nombre" 
-                placeholder="Escribe tu nombre"
-                [(ngModel)]="user.nombre"
-            />
-        </div>
-        <div class="apeM">
-            <p class="etiqueta">Apellido paterno</p>
-            <input 
-                type="text" 
-                name="apellidoPaterno" 
-                id="apellidoPaterno"
-                placeholder="Apellido Paterno" 
-                [(ngModel)]="user.apellidoPaterno" 
-            />
-        </div>
-        <div class="apeP">
-            <p class="etiqueta">Apellido materno</p>
-            <input 
-                type="text" 
-                name="apellidoMaterno"
-                id="apellidoMaterno"
-                placeholder="Apellido Materno" 
-                [(ngModel)]="user.apellidoMaterno" 
-            />
-        </div>
-        <div class="gen">
-            <label class="etiqueta">Género</label><br/>
-            <input 
-                type="radio" 
-                id="generoF"
-                name="generoF" 
-                value="femenino" 
-                [(ngModel)]="user.genero"/>
-            <label for="femenino">Femenino</label><br />
-            <input 
-                type="radio" 
-                id="generoM" 
-                name="generoM" 
-                value="masculino" 
-                [(ngModel)]="user.genero" 
-            />
-            <label for="masculino">Masculino</label><br />
-        </div>
-        <div class="fecha">
-            <p class="etiqueta">Fecha de nacimmiento</p>
-            <input 
-                type="date"
-                name="fechaNacimiento"
-                id="fechaNacimiento"
-                placeolder="Fecha nacimiento" 
-                [(ngModel)]="user.fechaNacimiento" 
-            />
-        </div>
-        <div class="curp">
-            <p class="etiqueta">Curp</p>
-            <input 
-                type="text" 
-                name="curp"
-                id="curp"
-                placeholder="CURP"
-                [(ngModel)]="user.curp" 
-            />
-        </div>
-        <div class="tipoS">
-            <p class="etiqueta">Tipo de sangre</p>
-            <input 
-                type="text" 
-                name="tipoSangre"
-                id="tipoSangre"
-                placeholder="Tipo Sangre" 
-                [(ngModel)]="user.tipoSangre" 
-            />
-        </div>
-        <div class="estado">
-            <p class="etiqueta">Estado</p>
-            <input 
-                type="text" 
-                name="estado"
-                id="estado"
-                placeholder="Estado" 
-                [(ngModel)]="user.estado" 
-            />
-        </div>
-        <div class="ciudad">
-            <p class="etiqueta">Ciudad</p>
-            <input 
-                type="text" 
-                name="ciudad"
-                id="ciudad" 
-                placeholder="Ciudad"
-                [(ngModel)]="user.ciudad" 
-            />
-        </div>
-        <div class="cp">
-            <p class="etiqueta">C.P.</p>
-            <input 
-                type="number" 
-                name="cp"
-                id="cp"
-                placeholder="Codigo Postal" 
-                [(ngModel)]="user.cp" 
-            />
-        </div>
-        <div class="direccion">
-            <p class="etiqueta">Contraseña</p>
-            <input 
-            type="password" 
-            [(ngModel)]="user.password" 
-            name="Password" 
-            placeholder="Password" 
-        />
-        </div>
-        <div class="btn">
-            <button type="submit">
-                Registrar
-            </button>
-        </div>
-    </form>
+  <form
+    (submit)="registrar()"
+    class="grid-container-main"
+    [formGroup]="pacienteForm"
+  >
+    <div class="nombre">
+      <p class="etiqueta">Nombre</p>
+      <input
+        type="text"
+        formControlName="nombre"
+        name="Nombre"
+        id="Nombre"
+        placeholder="Escribe tu nombre"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('nombre')?.hasError('required') &&
+          pacienteForm.get('nombre')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="apeM">
+      <p class="etiqueta">Apellido paterno</p>
+      <input
+        type="text"
+        formControlName="apePat"
+        id="ApellidoP"
+        name="ApellidoP"
+        placeholder="Apellido Paterno"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('apePat')?.hasError('required') &&
+          pacienteForm.get('apePat')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="apeP">
+      <p class="etiqueta">Apellido materno</p>
+      <input
+        type="text"
+        formControlName="apeMat"
+        id="ApellidoM"
+        name="ApellidoM"
+        placeholder="Apellido Materno"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('apeMat')?.hasError('required') &&
+          pacienteForm.get('apeMat')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="gen">
+      <label class="etiqueta">Género</label><br />
+      <input
+        type="radio"
+        formControlName="genero"
+        id="femenino"
+        name="genero"
+        value="Femenino"
+      />
+      <label for="femenino">Femenino</label><br />
+      <input
+        type="radio"
+        formControlName="genero"
+        id="masculino"
+        name="genero"
+        value="Masculino"
+      />
+      <label for="masculino">Masculino</label><br />
+      <div
+        class="text-danger"
+        *ngIf="pacienteForm.get('genero')?.hasError('required')"
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="fecha">
+      <p class="etiqueta">Fecha de nacimmiento</p>
+      <input
+        type="date"
+        formControlName="fechaNac"
+        name="fecha"
+        placeolder="Fecha nacimiento"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('fechaNac')?.hasError('required') &&
+          pacienteForm.get('fechaNac')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="curp">
+      <p class="etiqueta">Curp</p>
+      <input
+        type="text"
+        formControlName="curp"
+        id="Curp"
+        name="Curp"
+        placeholder="CURP"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('curp')?.hasError('required') &&
+          pacienteForm.get('curp')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="tipoS">
+      <p class="etiqueta">Tipo de sangre</p>
+      <input
+        type="text"
+        formControlName="tipoSangre"
+        id="Sangre"
+        name="Sangre"
+        placeholder="Tipo Sangre"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('tipoSangre')?.hasError('required') &&
+          pacienteForm.get('tipoSangre')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="estado">
+      <p class="etiqueta">Estado</p>
+      <input
+        type="text"
+        formControlName="estado"
+        id="Estado"
+        name="Estado"
+        placeholder="Estado"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('estado')?.hasError('required') &&
+          pacienteForm.get('estado')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="ciudad">
+      <p class="etiqueta">Ciudad</p>
+      <input
+        type="text"
+        formControlName="ciudad"
+        id="Ciudad"
+        name="Ciudad"
+        placeholder="Ciudad"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('ciudad')?.hasError('required') &&
+          pacienteForm.get('ciudad')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="cp">
+      <p class="etiqueta">C.P.</p>
+      <input
+        type="text"
+        formControlName="cp"
+        id="Cp"
+        name="Cp"
+        placeholder="Codigo Postal"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('cp')?.hasError('required') &&
+          pacienteForm.get('cp')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="password">
+      <p class="etiqueta">Contraseña</p>
+      <input
+        type="password"
+        formControlName="password"
+        id="password"
+        name="password"
+        placeholder="Contraseña"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          pacienteForm.get('password')?.hasError('required') &&
+          pacienteForm.get('password')?.touched
+        "
+      >
+        <span>*</span>
+      </div>
+    </div>
+    <div class="btn">
+      <button type="submit" [disabled]="pacienteForm.invalid">Registrar</button>
+      
+    </div>
+  </form>
 </main>
