@@ -1,0 +1,98 @@
+<header class="row">
+  <div>
+    <a routerLink="/home">
+      <img src="/assets/img/logo.png" alt="logo" />
+    </a>
+  </div>
+  <div class="name-img">
+    <p>{{ datosMedico.nombre }}</p>
+    <img *ngIf="datosMedico.genero === 'masculino'" src="/assets/img/doctor.png" alt="Foto de usuario" />
+    <img *ngIf="datosMedico.genero === 'femenino'" src="/assets/img/doctora.png" alt="Foto de usuario" />
+  </div>
+</header>
+<main>
+  <div class="grid-layout">
+    <div class="grid-lateral">
+      <a routerLink="/diagnosticoMedico" class="button-1">Diagnóstico</a>
+      <a routerLink="/medicamentoMedico" class="button-2">Medicamento</a>
+      <a routerLink="/antecedentesMedico" class="button-3">Antecedentes</a>
+      <a routerLink="/subirArchivoMedico" class="button-4">Subir archivo</a>
+      <a routerLink="/historialMedicoPaciente" class="button-5"
+        >Terminar registro</a
+      >
+    </div>
+    <div class="grid-principal">
+      <p class="nombrePaciente">Paciente: {{datosPaciente.nombre}} {{datosPaciente.apellidoPaterno}} {{datosPaciente.apellidoMaterno}} </p>
+
+      <form
+        class="grid-contenido"
+        (submit)="guardarArchivos()"
+        [formGroup]="archivosForm"
+      >
+        <div class="tituloArchivo">
+          <p>Titulo del archivo</p>
+          <input
+            type="text"
+            placeholder="Titulo para identificar el archivo"
+            formControlName="titulo"
+          />
+        </div>
+        <div class="tipo">
+          <p>Tipo</p>
+          <select name="select" formControlName="tipo">
+            <option value="value1" selected>Seleccione una opción</option>
+            <option value="value2">Análisis</option>
+            <option value="value3">Radiografía</option>
+            <option value="value4">Ultrasonido</option>
+            <option value="value5">Resonancia magnética</option>
+            <option value="value6">Tomografía</option>
+
+            <option value="value7">Otro</option>
+          </select>
+        </div>
+        <div class="observaciones">
+          <p>Observaciones</p>
+          <textarea
+            formControlName="observaciones"
+            cols="40"
+            rows="4"
+          ></textarea>
+        </div>
+        <div class="imagen" (click)="subirArchivo()">
+          <div class="etiquetas">
+            <p>Seleccione un archivo</p>
+            <input type="file" (change)="cambioArchivo($event)" />
+            <p class="nomArchivo">Archivo1.png</p>
+          </div>
+
+          <a >
+            <img src="/assets/img/folder.png" alt="imagen de un folder" />
+          </a>
+        </div>
+        <div class="botonAgregar">
+          <a (click)="guardarArchivos()" type="submit" style="cursor: pointer"
+            >Agregar</a
+          >
+        </div>
+        <div class="tabla">
+          <table>
+            <thead>
+              <tr>
+                <th>Titulo del archivo</th>
+                <th>Tipo</th>
+                <th>Observaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let archivo of archivos">
+                <th scope="row">{{ archivo.titulo }}</th>
+                <td>{{ <!-- archivo.tipo --> }}</td>
+                <td>{{ archivo.observaciones }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

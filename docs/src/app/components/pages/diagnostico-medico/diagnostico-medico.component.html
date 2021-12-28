@@ -1,0 +1,58 @@
+<header class="row">
+  <div>
+    <a routerLink="/home">
+      <img src="/assets/img/logo.png" alt="logo" />
+    </a>
+  </div>
+  <div class="name-img">
+    <p>{{ datosMedico.nombre }}</p>
+    <img *ngIf="datosMedico.genero === 'masculino'" src="/assets/img/doctor.png" alt="Foto de usuario" />
+    <img *ngIf="datosMedico.genero === 'femenino'" src="/assets/img/doctora.png" alt="Foto de usuario" />
+  </div>
+</header>
+<main>
+  <div class="grid-layout">
+    <div class="grid-lateral">
+      <a routerLink="/diagnosticoMedico" class="button-1">Diagnóstico</a>
+      <a routerLink="/medicamentoMedico" class="button-2">Medicamento</a>
+      <a routerLink="/antecedentesMedico" class="button-3">Antecedentes</a>
+      <a routerLink="/subirArchivoMedico" class="button-4">Subir archivo</a>
+    </div>
+    <form
+      (submit)="guardarDiag()"
+      class="grid-principal"
+      [formGroup]="diagnosticoForm"
+    >
+      <p class="nombrePaciente">Paciente: {{datosPaciente.nombre}} {{datosPaciente.apellidoPaterno}} {{datosPaciente.apellidoMaterno}} </p>
+
+      <div class="seccion1">
+        <div class="datos-1">
+          <div class="general">
+            <p>Diagnóstico general</p>
+            <input
+              type="text"
+              formControlName="diagGeneral"
+              placeholder="Diagnóstico general"
+            />
+          </div>
+          <div>
+            <p>Descripción del diagnóstico</p>
+            <textarea
+              cols="30"
+              rows="5"
+              placeholder="Agrega aquí algo importante"
+              formControlName="descrip"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="boton-guardar">
+        <a (click)="guardarDiag()" type="submit" style="cursor: pointer"
+          >Guardar cambios</a
+        >
+      </div>
+      
+    </form>
+  </div>
+</main>
