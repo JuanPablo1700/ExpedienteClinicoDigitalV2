@@ -38,7 +38,7 @@ export class SubirArchivoMedicoComponent implements OnInit {
     this.archivosForm = this.fb.group({
       titulo: [''],
       tipo: [''],
-      observaciones: ['']
+      observacionesA: ['']
     })
    }
 
@@ -59,19 +59,22 @@ export class SubirArchivoMedicoComponent implements OnInit {
   }
 
   guardarArchivos(){
+    if (!localStorage.getItem('listaArchivos')) {
+      this.archivos = [];
+    }
+
     const archivo = {
       titulo: this.archivosForm.get('titulo')?.value,
-       tipo: this.archivosForm.get('tipo')?.value, 
-      observaciones: this.archivosForm.get('observaciones')?.value
+      tipo: this.archivosForm.get('tipo')?.value, 
+      observacionesA: this.archivosForm.get('observacionesA')?.value
     }
 
     localStorage.setItem('titulo', archivo.titulo)
-     localStorage.setItem('tipo', archivo.tipo) 
-    localStorage.setItem('observaciones', archivo.observaciones)
+    localStorage.setItem('tipo', archivo.tipo) 
+    localStorage.setItem('observacionesA', archivo.observacionesA)
 
-    console.log(archivo);
     //agregar archivos al arreglo
-    this.archivos.push(archivo )
+    this.archivos.push(archivo)
     localStorage.setItem('listaArchivos', JSON.stringify(this.archivos))
   }
 
@@ -79,7 +82,7 @@ export class SubirArchivoMedicoComponent implements OnInit {
     const archivo = {
       titulo: localStorage.getItem('titulo'),
       tipo: localStorage.getItem('tipo'),
-      observaciones: localStorage.getItem('observaciones')
+      observacionesA: localStorage.getItem('observacionesA')
     }
     this.archivosForm.setValue(archivo);
 
@@ -102,6 +105,12 @@ export class SubirArchivoMedicoComponent implements OnInit {
       error: (error) => console.log(error),
       complete: () => console.info('Complete')
     });
+  }
+
+  eliminarUltimo() {
+    this.archivos.pop();
+    localStorage.setItem("listaArchivos", JSON.stringify(this.archivos));    
+    console.log(this.archivos);
   }
 
 }

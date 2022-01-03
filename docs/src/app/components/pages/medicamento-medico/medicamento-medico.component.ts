@@ -50,7 +50,11 @@ export class MedicamentoMedicoComponent implements OnInit {
     this.obtenerDatosPaciente();
   }
 
-  guardarMedicam(){
+  guardarMedicam() {
+    if (!localStorage.getItem('listaMedicamentos')) {
+      this.medicamentos = [];
+    }
+    
     const medicamento = {
       nombreM: this.medicamentoForm.get('nombreM')?.value,
       viaAdmon: this.medicamentoForm.get('viaAdmon')?.value,
@@ -65,24 +69,25 @@ export class MedicamentoMedicoComponent implements OnInit {
     localStorage.setItem('duracion', medicamento.duracion)
     localStorage.setItem('notas', medicamento.notas)
 
-    //agregar medicamento al arreglo 
-    this.medicamentos.push(medicamento)
-    localStorage.setItem("listaMedicamentos", JSON.stringify(medicamento));
+    //agregar medicamento al arreglo  
+    this.medicamentos.push(medicamento);
+    localStorage.setItem("listaMedicamentos", JSON.stringify(this.medicamentos));
   }
 
   obtenerVariables() {
     const medicamento = {
-    nombreM: localStorage.getItem('nombreM'),
-    viaAdmon: localStorage.getItem('viaAdmon'),
-    frecuencia: localStorage.getItem('frecuencia'),
-    duracion: localStorage.getItem('duracion'),
-    notas: localStorage.getItem('notas')
-  }
-  this.medicamentoForm.setValue(medicamento)
+      nombreM: localStorage.getItem('nombreM'),
+      viaAdmon: localStorage.getItem('viaAdmon'),
+      frecuencia: localStorage.getItem('frecuencia'),
+      duracion: localStorage.getItem('duracion'),
+      notas: localStorage.getItem('notas')
+    }
+    this.medicamentoForm.setValue(medicamento);
 
-  //arreglo para tabla
-  this.medicamentos = JSON.parse(localStorage.getItem("listaMedicamentos") || '{}') 
-}
+    //arreglo para tabla
+    this.medicamentos = JSON.parse(localStorage.getItem("listaMedicamentos") || '{}')
+  }
+
   //obtener datos del médico 
   obtenerDatosMedico() {
     this.authService.datosMedico(localStorage.getItem('id')).subscribe({
@@ -98,6 +103,12 @@ export class MedicamentoMedicoComponent implements OnInit {
       error: (error) => console.log(error),
       complete: () => console.info('Complete')
     });
+  }
+
+  eliminarUltimo() {
+    this.medicamentos.pop();
+    localStorage.setItem("listaMedicamentos", JSON.stringify(this.medicamentos));    
+    console.log(this.medicamentos);
   }
 
 }

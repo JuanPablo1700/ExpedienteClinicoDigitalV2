@@ -41,19 +41,18 @@
           <p>Tipo</p>
           <select name="select" formControlName="tipo">
             <option value="value1" selected>Seleccione una opción</option>
-            <option value="value2">Análisis</option>
-            <option value="value3">Radiografía</option>
-            <option value="value4">Ultrasonido</option>
-            <option value="value5">Resonancia magnética</option>
-            <option value="value6">Tomografía</option>
-
-            <option value="value7">Otro</option>
+            <option value="Análisis">Análisis</option>
+            <option value="Radiografía">Radiografía</option>
+            <option value="Ultrasonido">Ultrasonido</option>
+            <option value="Resonancia magnética">Resonancia magnética</option>
+            <option value="Tomografía">Tomografía</option>
+            <option value="Otro">Otro</option>
           </select>
         </div>
         <div class="observaciones">
           <p>Observaciones</p>
           <textarea
-            formControlName="observaciones"
+            formControlName="observacionesA"
             cols="40"
             rows="4"
           ></textarea>
@@ -69,10 +68,13 @@
             <img src="/assets/img/folder.png" alt="imagen de un folder" />
           </a>
         </div>
-        <div class="botonAgregar">
-          <a (click)="guardarArchivos()" type="submit" style="cursor: pointer"
-            >Agregar</a
-          >
+        <div class="btn">
+          <a (click)="guardarArchivos()" type="submit" style="cursor: pointer">
+            Agregar
+          </a>
+          <a (click)="eliminarUltimo()" type="submit" style="cursor: pointer">
+            Eliminar último
+          </a>
         </div>
         <div class="tabla">
           <table>
@@ -83,11 +85,13 @@
                 <th>Observaciones</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="archivos.length == 0">
+            </tbody>
+            <tbody *ngIf="archivos.length > 0">
               <tr *ngFor="let archivo of archivos">
                 <th scope="row">{{ archivo.titulo }}</th>
-                <td>{{ <!-- archivo.tipo --> }}</td>
-                <td>{{ archivo.observaciones }}</td>
+                <td>{{ archivo.tipo }}</td>
+                <td>{{ archivo.observacionesA }}</td>
               </tr>
             </tbody>
           </table>

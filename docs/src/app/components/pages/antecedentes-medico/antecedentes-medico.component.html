@@ -50,21 +50,32 @@
             placeholder="Observaciones"
           ></textarea>
           <div class="btn">
-            <a
-              (click)="guardarAntescedentes()"
-              type="submit"
-              style="cursor: pointer"
-              >Agregar</a
-            >
+            <a (click)="guardarAntescedentes()" type="submit" style="cursor: pointer">
+              Agregar
+            </a>
+            <a (click)="eliminarUltimo()" type="submit" style="cursor: pointer">
+              Eliminar último
+            </a>
           </div>
         </div>
         <div class="tabla">
           <table>
-            <tr>
-              <th>Antecedente</th>
-              <th>Parentesco</th>
-              <th>Observaciones</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>Antecedente</th>
+                <th>Parentesco</th>
+                <th>Observaciones</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="antecedentes.length == 0">
+            </tbody>
+            <tbody *ngIf="antecedentes.length > 0">
+              <tr *ngFor="let antecedente of antecedentes">
+                <td scope="row"> {{antecedente.tipo}} </td>
+                <td>{{antecedente.parentesco}}</td>
+                <td>{{antecedente.observaciones}}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

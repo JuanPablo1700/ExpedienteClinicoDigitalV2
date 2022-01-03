@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { ListaAntecedentes } from 'src/models/listaAntecedentes'
 
 @Component({
   selector: 'app-antecedentes-medico',
@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AntecedentesMedicoComponent implements OnInit {
   antescedentesForm: FormGroup;
+
+  antecedentes: ListaAntecedentes[] = [];
 
   datosMedico = {
     nombre: '',
@@ -46,6 +48,10 @@ export class AntecedentesMedicoComponent implements OnInit {
   }
 
   guardarAntescedentes(){
+    if (!localStorage.getItem('listaAntecedentes')) {
+      this.antecedentes = [];
+    }
+
     const antescedente = {
       tipo: this.antescedentesForm.get('tipo')?.value,
       parentesco: this.antescedentesForm.get('parentesco')?.value,
@@ -55,6 +61,10 @@ export class AntecedentesMedicoComponent implements OnInit {
     localStorage.setItem('tipo', antescedente.tipo)
     localStorage.setItem('parentesco', antescedente.parentesco)
     localStorage.setItem('observaciones', antescedente.observaciones)
+
+      //agregar antecedentes al arreglo  
+      this.antecedentes.push(antescedente);
+      localStorage.setItem("listaAntecedentes", JSON.stringify(this.antecedentes));
   }
 
   obtenerVariables(){
@@ -64,6 +74,9 @@ export class AntecedentesMedicoComponent implements OnInit {
       observaciones: localStorage.getItem('observaciones'),
     }
     this.antescedentesForm.setValue(diagnostico);
+
+    //arreglo para tabla
+    this.antecedentes = JSON.parse(localStorage.getItem("listaAntecedentes") || '{}')
   }
 
   //obtener datos del médico 
@@ -81,6 +94,11 @@ export class AntecedentesMedicoComponent implements OnInit {
       error: (error) => console.log(error),
       complete: () => console.info('Complete')
     });
+  }
+
+  eliminarUltimo() {
+    this.antecedentes.pop();
+    localStorage.setItem("listaAntecedentes", JSON.stringify(this.antecedentes));
   }
 
 }

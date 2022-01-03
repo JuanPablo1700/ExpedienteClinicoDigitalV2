@@ -66,9 +66,12 @@
             formControlName="notas"
           ></textarea>
           <div class="btn">
-            <a (click)="guardarMedicam()" type="submit" style="cursor: pointer"
-              >Agregar</a
-            >
+            <a (click)="guardarMedicam()" type="submit" style="cursor: pointer">
+              Agregar
+            </a>
+            <a (click)="eliminarUltimo()" type="submit" style="cursor: pointer">
+              Eliminar último
+            </a>
           </div>
         </div>
         <div class="tabla">
@@ -82,7 +85,9 @@
                 <th>Notas</th>
               </tr>
             </thead>
-            <tbody *ngIf="!medicamentos">
+            <tbody *ngIf="medicamentos.length == 0">
+            </tbody>
+            <tbody *ngIf="medicamentos.length > 0">
               <tr *ngFor="let medicamento of medicamentos">
                 <th scope="row"> {{medicamento.nombreM}} </th>
                 <td>{{medicamento.viaAdmon}}</td>
