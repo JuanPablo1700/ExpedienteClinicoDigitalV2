@@ -3,6 +3,7 @@ const router = Router();
 
 const User = require("../models/User");
 const Medico = require("../models/Medico");
+const Diagnostico = require("../models/Diagnostico");
 
 const jwt = require("jsonwebtoken");
 
@@ -136,4 +137,16 @@ function verifyToken(req, res, next) {
   next();
 }
 
+router.post('/guardarDiagnostico', async(req, res) => {
+  try {
+      let diagnostico;
 
+      diagnostico = new Diagnostico(req.body);
+
+      await diagnostico.save();
+      res.send(diagnostico);
+  }catch (error){
+      console.log(error);
+      res.status(500).send('Hubo un error');
+  }
+});

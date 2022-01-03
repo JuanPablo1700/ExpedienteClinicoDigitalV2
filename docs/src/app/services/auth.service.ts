@@ -54,4 +54,8 @@ export class AuthService {
     this.router.navigate(['/home']);
   }
 
+  guardarDiagnostico(diagnostico: any) {
+    return this.http.post<any>(this.URL + '/guardarDiagnostico', diagnostico);
+  }
+
 }

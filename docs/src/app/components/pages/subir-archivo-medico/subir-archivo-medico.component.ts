@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { listaArchivos } from 'src/models/listaArchivos';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-subir-archivo-medico',
@@ -33,7 +34,8 @@ export class SubirArchivoMedicoComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.archivosForm = this.fb.group({
       titulo: [''],
@@ -111,6 +113,36 @@ export class SubirArchivoMedicoComponent implements OnInit {
     this.archivos.pop();
     localStorage.setItem("listaArchivos", JSON.stringify(this.archivos));    
     console.log(this.archivos);
+  }
+
+  guardarDiagnostico(){
+
+    var arrayArchivos = [];
+    for ( var i = 0; i < JSON.parse(localStorage.getItem("listaArchivos") || '{}').length; i++) {
+      arrayArchivos.push({
+        archivo: JSON.parse(localStorage.getItem("listaArchivos") || '{}')[i]
+      });
+    }
+
+    const diagnostico = {
+      id_paciente: localStorage.getItem('id_paciente'),
+      fechaActual: new Date(),
+      Atendio: localStorage.getItem('nombreUsuario'),
+      diagGeneral: localStorage.getItem('diagGeneral'),
+      descrip: localStorage.getItem('descrip'),
+      listaMedicamentos: JSON.parse(localStorage.getItem("listaMedicamentos") || '{}'),
+      listaAntecedentes: JSON.parse(localStorage.getItem("listaAntecedentes") || '{}'),
+      listaArchivos: {arrayArchivos}
+    }
+    console.log(diagnostico);
+
+    this.authService.guardarDiagnostico(diagnostico).subscribe({
+      next: () => this.router.navigate(['/historialMedicoPaciente']), 
+      error: (err) => console.log(err),
+      complete:() => console.info('Complete')
+    });
+
+    
   }
 
 }
