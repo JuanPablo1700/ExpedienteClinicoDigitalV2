@@ -58,8 +58,8 @@ main {
 
 .contenedor {
     display: block;
-    margin: 7rem auto;
-    margin-bottom: 8.5rem;
+    margin: 2rem auto;
+    margin-bottom: 2rem;
     border-radius: 5px;
     border: 2px solid #c4c4c4;
     padding: 1rem;

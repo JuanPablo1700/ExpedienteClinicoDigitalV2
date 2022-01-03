@@ -23,14 +23,14 @@
     <div>
         <h1>Historial Médico</h1>
     </div>
-    <div>
+    <!-- <div>
         <p class="periodo">Periodo</p>
         <input type="text" placeholder="Enero">
         <input type="text" placeholder="2020">
         <button name="" class="btn-buscar">Buscar</button>
-    </div>
+    </div> -->
     <!-- Contenedor de expedientes médicos -->
-    <a *ngFor="let diag of diagnostico" routerLink="/consultaSeleccionada" class="contenedor">
+    <a *ngFor="let diag of diagnostico.reverse(); let i=index;" (click)="consultaSeleccionada(diagnostico.length-i-1)" class="contenedor">
         <div>
             <div class="info-paciente">
                 <p class="etiqueta">Fecha: </p>

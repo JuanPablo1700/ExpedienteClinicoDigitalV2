@@ -27,11 +27,11 @@ router.post('/registrar', async(req, res) => {
 router.post("/iniciarSesion", async (req, res) => {
   const { curp, password } = req.body;
   const user = await User.findOne({ curp });
-  let id = user._id;
   if (!user) return res.status(401).send("La curp es incorrecta.");
   if (user.password !== password)
     return res.status(401).send("Contraseña incorrecta.");
-
+  
+  let id = user._id;
   const token = jwt.sign({ _id: user._id }, "secretKey");
   return res.status(200).json({ token, id });
 });
@@ -39,12 +39,12 @@ router.post("/iniciarSesion", async (req, res) => {
 router.post("/iniciarSesionMedico", async (req, res) => {
   const { correo, password } = req.body;
   const medico = await Medico.findOne({ correo });
-  let id = medico._id;
-  let nombreMedico = medico.nombre;
   if (!medico) return res.status(401).send("El correo es incorrecto.");
   if (medico.password !== password)
     return res.status(401).send("Contraseña incorrecta.");
-
+  
+  let id = medico._id;
+  let nombreMedico = medico.nombre;
   const token = jwt.sign({ _id: medico._id }, "secretKey");
   return res.status(200).json({ token, id, nombreMedico });
 });
@@ -151,7 +151,6 @@ router.post('/guardarDiagnostico', async(req, res) => {
 router.get("/obtenerConsultas/:id", async (req, res) => {
   try {
     let Diagnosticos = await Diagnostico.find({"id_paciente": req.params.id});
-    let id_consulta = Diagnosticos._id;
     if(!Diagnosticos) {
       res.status(404).json({msg: 'No tiene diagnósticos'})
     }
@@ -164,5 +163,19 @@ router.get("/obtenerConsultas/:id", async (req, res) => {
   }
 });
 
+router.get("/obtenerConsultasSeleccionada/:id", async (req, res) => {
+  try {
+    let Diagnosticos = await Diagnostico.findById(req.params.id);
+    if(!Diagnosticos) {
+      res.status(404).json({msg: 'No tiene diagnósticos'})
+    }
+
+    return res.json(Diagnosticos);
+
+  }catch (error) {
+    console.log(error);
+    return res.status(500).send('Hubo un error')
+  }
+});
 
 module.exports = router;

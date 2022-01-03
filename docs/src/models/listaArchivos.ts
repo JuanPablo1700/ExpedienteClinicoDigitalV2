@@ -1,5 +1,5 @@
 export interface listaArchivos {
     titulo: String,
-    tipo: String,
+    tipoA: String,
     observacionesA: String
 }

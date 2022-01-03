@@ -37,20 +37,13 @@ main {
 .grid-layout {
     display: grid;
     grid-template-areas:'titulo titulo titulo'
-                        'general medidas alergias'
+                        'general general fecha'
                         'descripcion descripcion descripcion'
                         'tabla tabla tabla';
     grid-template-columns: 1fr 1fr 1fr;
     height: 100%;
     gap: 2rem;
     margin: 0rem 5rem 0rem 5rem;
-}
-
-.titulo {
-    grid-area: titulo;
-    text-align: center;
-    font-size: 3rem;
-    font-weight: bold;
 }
 
 .general {
@@ -67,8 +60,8 @@ main {
     height: fit-content;
 }
 
-.alergias {
-    grid-area: alergias;
+.fecha {
+    grid-area: fecha;
     border: 1px solid #c4c4c4;
     padding: 1rem 2rem;
     height: fit-content;

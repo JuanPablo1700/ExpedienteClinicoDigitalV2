@@ -39,7 +39,7 @@
         </div>
         <div class="tipo">
           <p>Tipo</p>
-          <select name="select" formControlName="tipo">
+          <select name="select" formControlName="tipoA">
             <option value="value1" selected>Seleccione una opción</option>
             <option value="Análisis">Análisis</option>
             <option value="Radiografía">Radiografía</option>
@@ -90,7 +90,7 @@
             <tbody *ngIf="archivos.length > 0">
               <tr *ngFor="let archivo of archivos">
                 <th scope="row">{{ archivo.titulo }}</th>
-                <td>{{ archivo.tipo }}</td>
+                <td>{{ archivo.tipoA }}</td>
                 <td>{{ archivo.observacionesA }}</td>
               </tr>
             </tbody>

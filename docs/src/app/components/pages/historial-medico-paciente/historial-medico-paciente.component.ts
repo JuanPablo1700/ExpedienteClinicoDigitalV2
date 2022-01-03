@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-historial-medico-paciente',
@@ -32,10 +33,11 @@ export class HistorialMedicoPacienteComponent implements OnInit {
     Atendio: "",
     diagGeneral: "",
     descrip: ""
-  }]
+  }];
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -67,10 +69,20 @@ export class HistorialMedicoPacienteComponent implements OnInit {
     this.authService.obtenerConsultas(localStorage.getItem('id_paciente')).subscribe({
       next: (data) => {
         this.diagnostico = data;
-        console.log(this.diagnostico[0]._id)
       },
       error: (error) => console.log(error),
       complete: () => console.info('Complete')
+    });
+  }
+
+  consultaSeleccionada( id:any ) {
+    this.authService.obtenerConsultas(localStorage.getItem('id_paciente')).subscribe({
+      next: (data) => {
+        localStorage.setItem('id_consulta',data[id]._id);
+        this.router.navigate(["/consultaSeleccionada"]);
+      },
+      error: (error) => console.log(error),
+      complete: () => ""
     });
   }
 

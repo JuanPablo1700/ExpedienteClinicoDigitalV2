@@ -39,7 +39,7 @@ export class SubirArchivoMedicoComponent implements OnInit {
   ) {
     this.archivosForm = this.fb.group({
       titulo: [''],
-      tipo: [''],
+      tipoA: [''],
       observacionesA: ['']
     })
    }
@@ -67,12 +67,12 @@ export class SubirArchivoMedicoComponent implements OnInit {
 
     const archivo = {
       titulo: this.archivosForm.get('titulo')?.value,
-      tipo: this.archivosForm.get('tipo')?.value, 
+      tipoA: this.archivosForm.get('tipoA')?.value, 
       observacionesA: this.archivosForm.get('observacionesA')?.value
     }
 
     localStorage.setItem('titulo', archivo.titulo)
-    localStorage.setItem('tipo', archivo.tipo) 
+    localStorage.setItem('tipoA', archivo.tipoA) 
     localStorage.setItem('observacionesA', archivo.observacionesA)
 
     //agregar archivos al arreglo
@@ -83,7 +83,7 @@ export class SubirArchivoMedicoComponent implements OnInit {
   obtenerVariables(){
     const archivo = {
       titulo: localStorage.getItem('titulo'),
-      tipo: localStorage.getItem('tipo'),
+      tipoA: localStorage.getItem('tipoA'),
       observacionesA: localStorage.getItem('observacionesA')
     }
     this.archivosForm.setValue(archivo);
@@ -111,8 +111,7 @@ export class SubirArchivoMedicoComponent implements OnInit {
 
   eliminarUltimo() {
     this.archivos.pop();
-    localStorage.setItem("listaArchivos", JSON.stringify(this.archivos));    
-    console.log(this.archivos);
+    localStorage.setItem("listaArchivos", JSON.stringify(this.archivos));
   }
 
   guardarDiagnostico(){
@@ -129,12 +128,33 @@ export class SubirArchivoMedicoComponent implements OnInit {
     }
 
     this.authService.guardarDiagnostico(diagnostico).subscribe({
-      next: () => this.router.navigate(['/historialMedicoPaciente']), 
+      next: () => {
+        this.router.navigate(['/historialMedicoPaciente']);
+        this.limpiarDiagnostico();
+      }, 
       error: (err) => console.log(err),
       complete:() => console.info('Complete')
     });
 
-    
+  }
+
+  limpiarDiagnostico() {
+    localStorage.removeItem('diagGeneral');
+    localStorage.removeItem('descrip');
+    localStorage.removeItem('nombreM');
+    localStorage.removeItem('viaAdmon');
+    localStorage.removeItem('frecuencia');
+    localStorage.removeItem('duracion');
+    localStorage.removeItem('notas');
+    localStorage.removeItem('tipo');
+    localStorage.removeItem('parentesco');
+    localStorage.removeItem('observaciones');
+    localStorage.removeItem('titulo');
+    localStorage.removeItem('tipoA');
+    localStorage.removeItem('observacionesA');
+    localStorage.removeItem('listaArchivos');
+    localStorage.removeItem('listaMedicamentos');
+    localStorage.removeItem('listaAntecedentes');
   }
 
 }

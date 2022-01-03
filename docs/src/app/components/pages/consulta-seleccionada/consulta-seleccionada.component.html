@@ -20,113 +20,88 @@
 </header>
 <main>
     <div class="grid-layout">
-        <div class="titulo">
-            <p>Consulta del 20 de mayo de 2021</p>
-        </div>
         <div class="general">
             <p>General</p>
-            <p>Atendio:</p>
-            <p>Diagnóstico: </p>
+            <p>Atendio: {{diagnostico.Atendio}}</p>
+            <p>Diagnóstico: {{diagnostico.diagGeneral}}</p>
         </div>
-        <div class="medidas">
-            <p>Medidas</p>
-            <p>Altura:</p>
-            <p>Peso:</p>
-        </div>
-        <div class="alergias">
-            <p>Alergias</p>
+        <div class="fecha">
+            <br>
+            <br>
+            <p>Fecha de consulta: {{diagnostico.fechaActual}}</p>
+            <br>
         </div>
         <div class="descripcion">
             <p>Descripción del diagnóstico</p>
             <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum,
-                dignissimos. Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Dolorum, explicabo cupiditate. Deleniti illo deserunt
-                placeat nemo quos, cupiditate assumenda ab.
+                {{diagnostico.descrip}}
             </p>
         </div>
         <div class="tabla">
-
             <div class="tablaMedicamento">
                 <table>
-                    <tr>
-                        <th>Medicamento</th>
-                        <th>Vía</th>
-                        <th>Frecuencia</th>
-                        <th>Duración</th>
-                        <th>Notas</th>
-                    </tr>
-                    <tr>
-                        <td>Paracetamol</td>
-                        <td>Oral</td>
-                        <td>Cada 8 hrs</td>
-                        <td>Por 3 días</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Medicamento</th>
+                            <th>Vía</th>
+                            <th>Frecuencia</th>
+                            <th>Duración</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="consultaMedicamentos.length == 0">
+                    </tbody>
+                    <tbody *ngIf="consultaMedicamentos.length > 0">
+                      <tr *ngFor="let medicamento of consultaMedicamentos">
+                        <td scope="row"> {{medicamento.nombreM}} </td>
+                        <td>{{medicamento.viaAdmon}}</td>
+                        <td>{{medicamento.frecuencia}}</td>
+                        <td>{{medicamento.duracion}}</td>
+                        <td>{{medicamento.notas}}</td>
+                      </tr>
+                    </tbody>
                 </table>
             </div>
 
             <div class="tablaAntecedentes">
                 <table>
-                    <tr>
-                        <th>Antecedentes</th>
-                        <th>Parentesco</th>
-                        <th>Observaciones</th>
-                    </tr>
-                    <tr>
-                        <td>Diabetes</td>
-                        <td>Abuela</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Antecedentes</th>
+                            <th>Parentesco</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                        <tbody *ngIf="consultaAntecedentes.length == 0">
+                    </tbody>
+                    <tbody *ngIf="consultaAntecedentes.length > 0">
+                      <tr *ngFor="let antecedente of consultaAntecedentes">
+                        <td scope="row"> {{antecedente.tipo}} </td>
+                        <td>{{antecedente.parentesco}}</td>
+                        <td>{{antecedente.observaciones}}</td>
+                      </tr>
+                    </tbody>
                 </table>
             </div>
 
             <div class="tablaArchivos">
                 <table>
-                    <tr>
-                        <th>Descripción del archivo</th>
-                        <th>Archivo</th>
-                        <th>Observaciones</th>
-                    </tr>
-                    <tr>
-                        <td>Radiografia</td>
-                        <td>radiografia.png</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Descripción del archivo</th>
+                            <th>Archivo</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="consultaArchivos.length == 0">
+                    </tbody>
+                    <tbody *ngIf="consultaArchivos.length > 0">
+                      <tr *ngFor="let archivo of consultaArchivos">
+                        <td scope="row">{{ archivo.titulo }}</td>
+                        <td>{{ archivo.tipoA }}</td>
+                        <td>{{ archivo.observacionesA }}</td>
+                      </tr>
+                    </tbody>
                 </table>
             </div>
 
