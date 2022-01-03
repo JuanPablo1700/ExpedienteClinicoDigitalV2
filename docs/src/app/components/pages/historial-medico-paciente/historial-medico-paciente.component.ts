@@ -26,6 +26,14 @@ export class HistorialMedicoPacienteComponent implements OnInit {
     genero: ''
   }
 
+  diagnostico = [{
+    _id: "",
+    fechaActual: "",
+    Atendio: "",
+    diagGeneral: "",
+    descrip: ""
+  }]
+
   constructor(
     public authService: AuthService
   ) { }
@@ -35,6 +43,8 @@ export class HistorialMedicoPacienteComponent implements OnInit {
       this.obtenerDatosMedico();
     }
     this.obtenerDatosPaciente();
+
+    this.obtenerConsultas();
   }
 
   obtenerDatosMedico() {
@@ -54,7 +64,14 @@ export class HistorialMedicoPacienteComponent implements OnInit {
   }
 
   obtenerConsultas() {
-    //Falta por desarrolar
+    this.authService.obtenerConsultas(localStorage.getItem('id_paciente')).subscribe({
+      next: (data) => {
+        this.diagnostico = data;
+        console.log(this.diagnostico[0]._id)
+      },
+      error: (error) => console.log(error),
+      complete: () => console.info('Complete')
+    });
   }
 
 }

@@ -117,13 +117,6 @@ export class SubirArchivoMedicoComponent implements OnInit {
 
   guardarDiagnostico(){
 
-    var arrayArchivos = [];
-    for ( var i = 0; i < JSON.parse(localStorage.getItem("listaArchivos") || '{}').length; i++) {
-      arrayArchivos.push({
-        archivo: JSON.parse(localStorage.getItem("listaArchivos") || '{}')[i]
-      });
-    }
-
     const diagnostico = {
       id_paciente: localStorage.getItem('id_paciente'),
       fechaActual: new Date(),
@@ -132,9 +125,8 @@ export class SubirArchivoMedicoComponent implements OnInit {
       descrip: localStorage.getItem('descrip'),
       listaMedicamentos: JSON.parse(localStorage.getItem("listaMedicamentos") || '{}'),
       listaAntecedentes: JSON.parse(localStorage.getItem("listaAntecedentes") || '{}'),
-      listaArchivos: {arrayArchivos}
+      listaArchivos: JSON.parse(localStorage.getItem("listaArchivos") || '{}')
     }
-    console.log(diagnostico);
 
     this.authService.guardarDiagnostico(diagnostico).subscribe({
       next: () => this.router.navigate(['/historialMedicoPaciente']), 

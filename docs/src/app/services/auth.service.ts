@@ -58,4 +58,8 @@ export class AuthService {
     return this.http.post<any>(this.URL + '/guardarDiagnostico', diagnostico);
   }
 
+  obtenerConsultas(id: any): Observable<any> {
+    return this.http.get(this.URL + '/obtenerConsultas' + '/' + id);
+  }
+
 }

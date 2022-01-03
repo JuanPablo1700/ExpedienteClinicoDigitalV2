@@ -16,23 +16,23 @@ const diagnosticoSchema = new Schema({
     descrip: {
         type: String
     },
-    listaMedicamentos: {
-        nombreM: [{type: String}],
-        viaAdmon: [{type: String}],
-        frecuencia: [{type: String}],
-        duracion: [{type: String}],
-        notas: [{type: String}],
-    },
-    listaAntecedentes: {
-        tipo: [{type: Array}],
-        parentesco: [{type: Array}],
-        observaciones: [{type: Array}]
-    },
-    listaArchivos: {
-        titulo: [{type: String}],
-        tipo: [{type: String}],
-        ObservacionesA: [{type: String}]
-    }
+    listaMedicamentos: [
+        nombreM = "",
+        viaAdmon = "",
+        frecuencia = "",
+        duracion = "",
+        notas = ""
+    ],
+    listaAntecedentes: [
+        tipo = "",
+        parentesco = "",
+        observaciones = ""
+    ],
+    listaArchivos: [
+        titulo = "",
+        tipo = "",
+        ObservacionesA = ""
+    ]
 });
 
 module.exports = model('Diagnostico', diagnosticoSchema);

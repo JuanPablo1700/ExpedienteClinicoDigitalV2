@@ -119,9 +119,6 @@ router.get("/datosMedico/:id", async (req, res) => {
   }
 });
 
-
-module.exports = router;
-
 function verifyToken(req, res, next) {
   if (!req.headers.authorization) {
     return res.status.send("Requiere autorización");
@@ -150,3 +147,22 @@ router.post('/guardarDiagnostico', async(req, res) => {
       res.status(500).send('Hubo un error');
   }
 });
+
+router.get("/obtenerConsultas/:id", async (req, res) => {
+  try {
+    let Diagnosticos = await Diagnostico.find({"id_paciente": req.params.id});
+    let id_consulta = Diagnosticos._id;
+    if(!Diagnosticos) {
+      res.status(404).json({msg: 'No tiene diagnósticos'})
+    }
+
+    return res.json(Diagnosticos);
+
+  }catch (error) {
+    console.log(error);
+    return res.status(500).send('Hubo un error')
+  }
+});
+
+
+module.exports = router;

@@ -30,23 +30,23 @@
         <button name="" class="btn-buscar">Buscar</button>
     </div>
     <!-- Contenedor de expedientes médicos -->
-    <a routerLink="/consultaSeleccionada" class="contenedor">
+    <a *ngFor="let diag of diagnostico" routerLink="/consultaSeleccionada" class="contenedor">
         <div>
             <div class="info-paciente">
                 <p class="etiqueta">Fecha: </p>
-                <p class="info">17 de agosto de 2000</p>
+                <p class="info">{{diag.fechaActual}}</p>
             </div>
             <div class="info-paciente">
                 <p class="etiqueta">Atendio: </p>
-                <p class="info">Dr. Panchito de la Vega</p>
+                <p class="info">{{diag.Atendio}}</p>
             </div>
             <div class="info-paciente">
                 <p class="etiqueta">Motivo: </p>
-                <p class="info">Revisión de recién nacido</p>
+                <p class="info">{{diag.diagGeneral}}</p>
             </div>
             <div class="info-paciente">
                 <p class="etiqueta">Notas: </p>
-                <p class="info">Bebé en excelentes condiciones. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, et aspernatur! Error cum, autem sunt reiciendis cupiditate natus exercitationem quo dignissimos quas sit molestias ut laboriosam alias iste iure tempora?</p>
+                <p class="info">{{diag.descrip}}</p>
             </div>
         </div>
     </a>
