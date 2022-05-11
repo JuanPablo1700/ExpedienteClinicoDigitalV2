@@ -88,4 +88,7 @@ export class ConsultaSeleccionadaComponent implements OnInit {
     });
   }
 
+  obtieneFecha(){
+    return this.diagnostico.fechaActual.split('T')[0];
+  }
 }

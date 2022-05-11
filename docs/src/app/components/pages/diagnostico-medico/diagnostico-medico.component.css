@@ -136,16 +136,6 @@ header a img {
     border-radius: 2px;
 }
 
-.seccion2 {
-    /* display: grid;
-    grid-template-areas: 'datos-2 boton-2';
-    grid-template-columns: 63rem auto;
-    border: 1px solid #c4c4c4;
-    border-radius: 2px;
-    margin: 2rem 6rem 2rem; */
-    
-}
-
 .datos-2 {
     grid-area: datos-2;
     display: flex;

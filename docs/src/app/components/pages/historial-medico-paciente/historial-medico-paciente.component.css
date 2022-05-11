@@ -71,6 +71,7 @@ main {
 
 .contenedor:hover {
     box-shadow: #8BCAD9 2px 3px;
+    cursor: pointer;
 }
 
 .contenedor:visited {

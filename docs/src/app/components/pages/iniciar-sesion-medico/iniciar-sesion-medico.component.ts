@@ -14,6 +14,8 @@ export class IniciarSesionMedicoComponent implements OnInit {
     password: ""
   }
 
+  correcto = true; //variable para saber si está mal una contraseña
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -29,8 +31,12 @@ export class IniciarSesionMedicoComponent implements OnInit {
         localStorage.setItem('id', res.id);
         localStorage.setItem('nombreUsuario', res.nombreMedico);
         this.router.navigate(['/principalMedico']);
+        this.correcto = true;
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.correcto = false;
+      },
       complete: () => console.info('Complete')
     });
   }

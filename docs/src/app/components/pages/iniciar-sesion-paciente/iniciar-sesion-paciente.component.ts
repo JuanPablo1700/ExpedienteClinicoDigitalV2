@@ -8,13 +8,15 @@ import { Router } from "@angular/router";
   styleUrls: ['./iniciar-sesion-paciente.component.css']
 })
 export class IniciarSesionPacienteComponent implements OnInit {
-
+  
   user = {
     id: "",
     curp: "",
     password: ""
   }
 
+  correcto = true; //variable para saber si está mal una contraseña
+  
   constructor(
     private authService: AuthService,
     private router: Router
@@ -24,13 +26,18 @@ export class IniciarSesionPacienteComponent implements OnInit {
   }
 
   iniciarSesion() {
+    
     this.authService.iniciarSesion(this.user).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
         localStorage.setItem('id_paciente', res.id);
         this.router.navigate(['/principalPaciente']);
+        this.correcto = true;
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.correcto = false;
+      },
       complete: () => console.info('Complete')
     });
   }

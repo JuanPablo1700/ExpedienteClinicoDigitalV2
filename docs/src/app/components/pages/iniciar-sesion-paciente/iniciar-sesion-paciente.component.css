@@ -98,6 +98,7 @@ header a img {
   padding-right: 10.5%;
   text-decoration: none;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .pag-img-principal {
@@ -113,4 +114,42 @@ header a img {
 .pag-img-principal img {
   height: 30rem;
   margin-left: 3rem;
+}
+
+.msjFallo {
+  color: red;
+}
+
+/*Dispositivos medianos(tablets)*/
+@media(max-width:765px) {
+	/* .grid-container-main {
+        display: grid;
+        grid-template-areas:
+        'titulo titulo'
+        'general altura'
+        'tratamiento suplemento'
+        'ultimo ultimo';
+        grid-template-columns: auto auto;
+        grid-template-rows: 10rem 1fr 1fr;  
+        height: 100%;
+        flex-wrap: wrap;
+    } */
+}
+
+/*Dispositivos chicos(celulares)*/
+@media(max-width:576px) {
+	/* .grid-container-main {
+        display: grid;
+        grid-template-areas:
+        'titulo'
+        'general' 
+        'altura'
+        'tratamiento' 
+        'suplemento' 
+        'ultimo';
+        grid-template-columns: auto;
+        grid-template-rows: 10rem 1fr 1fr;  
+        height: 100%;
+        flex-wrap: wrap;
+    } */
 }

@@ -20,6 +20,7 @@
           <p class="etiqueta">Contraseña</p>
           <input type="password" [(ngModel)]="user.password" placeholder="Contraseña" [ngModelOptions]="{standalone: true}"/>
         </div>
+        <p *ngIf="!correcto" class="msjFallo">Fallo en el inicio de sesión</p>
       </div>
       <div class="botones">
         <a routerLink="/nuevoUsuarioPaciente" class="btn-registrar">No tengo cuenta</a>

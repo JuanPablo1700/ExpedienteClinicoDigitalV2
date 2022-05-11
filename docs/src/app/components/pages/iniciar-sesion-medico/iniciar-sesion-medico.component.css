@@ -107,6 +107,7 @@ header a img {
   padding-right: 10.5%;
   text-decoration: none;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .pag-img-principal {
@@ -122,6 +123,10 @@ header a img {
 .pag-img-principal img {
   height: 30rem;
   margin-left: 3rem;
+}
+
+.msjFallo{
+  color: red;
 }
 
 /*Dispositivos medianos(tablets)*/

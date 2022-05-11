@@ -32,6 +32,7 @@
             [(ngModel)]="medico.password"
           />
         </div>
+        <p *ngIf="!correcto" class="msjFallo">Fallo en el inicio de sesión</p>
       </div>
       <div class="botones">
         <a (click)="iniciarSesionMedico()" class="btn-ingresar">Ingresar</a>
