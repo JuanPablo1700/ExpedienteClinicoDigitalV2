@@ -48,12 +48,14 @@ header a img {
 
 .grid-layout {
   display: grid;
+  grid-template-areas: "form img";
   grid-template-columns: 50% 50%;
   grid-template-rows: 1fr;
 }
 
 .contenedor {
   display: grid;
+  grid-area: form;
   grid-template-rows: 1fr 1fr;
   margin: 2rem;
 }
@@ -112,6 +114,7 @@ header a img {
 
 .pag-img-principal {
   display: grid;
+  grid-area: img;
   grid-template-rows: 15rem 1fr;
   text-align: center;
 }
@@ -125,14 +128,26 @@ header a img {
   margin-left: 3rem;
 }
 
-.msjFallo{
+.msjFallo {
   color: red;
 }
 
 /*Dispositivos medianos(tablets)*/
 @media (max-width: 765px) {
+  .contenedor {
+    grid-template-areas:
+      "form"
+      "img";
+    grid-template-columns: 1fr;
+  }
 }
 
 /*Dispositivos chicos(celulares)*/
 @media (max-width: 576px) {
+  .contenedor {
+    grid-template-areas:
+      "form"
+      "img";
+    grid-template-columns: 1fr;
+  }
 }

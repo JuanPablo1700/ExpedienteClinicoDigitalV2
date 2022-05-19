@@ -118,3 +118,13 @@ header a img {
 .imgHosp {
   width: 80%;
 }
+
+.imgRobot{
+  width: 20%;
+  margin-top: 0%;
+  position: fixed;
+  cursor: pointer;
+  bottom: 90px;
+  right: 20px;
+  z-index: 10000;
+}
