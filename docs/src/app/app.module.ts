@@ -21,6 +21,7 @@ import { DiagnosticoMedicoComponent } from './components/pages/diagnostico-medic
 import { MedicamentoMedicoComponent } from './components/pages/medicamento-medico/medicamento-medico.component';
 import { AntecedentesMedicoComponent } from './components/pages/antecedentes-medico/antecedentes-medico.component';
 import { SubirArchivoMedicoComponent } from './components/pages/subir-archivo-medico/subir-archivo-medico.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SubirArchivoMedicoComponent } from './components/pages/subir-archivo-me
     DiagnosticoMedicoComponent,
     MedicamentoMedicoComponent,
     AntecedentesMedicoComponent,
-    SubirArchivoMedicoComponent
+    SubirArchivoMedicoComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

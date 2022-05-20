@@ -127,4 +127,9 @@ header a img {
   bottom: 90px;
   right: 20px;
   z-index: 10000;
+  transition: all 30ms;
+}
+
+.imgRobot:hover{
+  transform: translateY(-7px);
 }

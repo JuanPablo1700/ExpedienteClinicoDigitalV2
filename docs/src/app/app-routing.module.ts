@@ -13,6 +13,7 @@ import { DiagnosticoMedicoComponent } from './components/pages/diagnostico-medic
 import { MedicamentoMedicoComponent } from './components/pages/medicamento-medico/medicamento-medico.component';
 import { AntecedentesMedicoComponent } from './components/pages/antecedentes-medico/antecedentes-medico.component';
 import { SubirArchivoMedicoComponent } from './components/pages/subir-archivo-medico/subir-archivo-medico.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 import { AuthGuard } from "./auth.guard";
 
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'diagnosticoMedico', component: DiagnosticoMedicoComponent, canActivate: [AuthGuard]},
   { path: 'medicamentoMedico', component: MedicamentoMedicoComponent, canActivate: [AuthGuard]},
   { path: 'antecedentesMedico', component: AntecedentesMedicoComponent, canActivate: [AuthGuard]},
-  { path: 'subirArchivoMedico', component: SubirArchivoMedicoComponent, canActivate: [AuthGuard]}
+  { path: 'subirArchivoMedico', component: SubirArchivoMedicoComponent, canActivate: [AuthGuard]},
+  { path: 'chatbot', component: ChatbotComponent}
 ]
 
 @NgModule({

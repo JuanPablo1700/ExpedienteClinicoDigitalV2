@@ -15,7 +15,7 @@ body {
     "main"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 9rem;
+  grid-template-rows: 1fr 90px;
   height: 100%;
 }
 
@@ -31,4 +31,5 @@ footer {
   margin-bottom: -5rem;
   z-index: 1;
   height: 90px;
+  
 }
