@@ -77,6 +77,10 @@ header a img {
   overflow: auto;
 }
 
+.chatMensajes::-webkit-scrollbar{
+  display: none;
+}
+
 .contInputChat {
   grid-area: input;
   justify-content: center;

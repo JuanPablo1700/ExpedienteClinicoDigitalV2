@@ -47,6 +47,20 @@ export class ChatbotComponent implements OnInit {
 
     this.mensajes.push(mensaje);
     this.nuevoMensaje = "";
+
+    setTimeout(() => {
+      this.scrollAlUltimoElemento();
+    }, 30);
+
+  }
+
+  scrollAlUltimoElemento(){
+    let elements = document.getElementsByClassName('msj');
+    let ultimo: any = elements[(elements.length -1)];
+    let toppos = ultimo.offsetTop;
+
+    //@ts-ignore
+    document.getElementById('chatMensajes')?.scrollTop = toppos;
   }
 
 }

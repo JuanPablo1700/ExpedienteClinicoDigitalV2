@@ -14,10 +14,10 @@
       <p class="txt_chatbot">Chatbot</p>
     </div>
     <div class="chat">
-      <div class="chatMensajes">
+      <div class="chatMensajes" id="chatMensajes">
         <!-- si es emisor darle la clase enviado -->
         <p
-          *ngFor="let mensaje of mensajes"
+          *ngFor="let mensaje of mensajes" class="msj"
           [ngClass]="persona==mensaje.emisor ? 'enviado' : 'recibido'"
         >
           {{ mensaje.texto }}
