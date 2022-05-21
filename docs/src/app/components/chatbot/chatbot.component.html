@@ -14,9 +14,25 @@
       <p class="txt_chatbot">Chatbot</p>
     </div>
     <div class="chat">
-      <div class="contInputChat">
-        <input type="text" class="inputChat" placeholder="Escribe aquí tu duda"/>
+      <div>
+        <!-- si es emisor darle la clase enviado -->
+        <p
+          *ngFor="let mensaje of mensajes"
+          [ngClass]="persona.uid == mensaje.emisor? 'enviado' : 'recibido' " 
+        >
+          {{ mensaje.texto }}
+        </p>
       </div>
+
+      <form class="contInputChat" (ngSubmit)="enviarMensaje()">
+        <input
+          type="text"
+          class="inputChat"
+          placeholder="Escribe aquí tu duda"
+          [(ngModel)]="nuevoMensaje"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </form>
     </div>
 
     <div class="im">
