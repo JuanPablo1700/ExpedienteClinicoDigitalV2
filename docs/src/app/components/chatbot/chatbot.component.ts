@@ -7,24 +7,23 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent implements OnInit {
-  persona: any;
+  persona: string = "usuario";
   nuevoMensaje: string = "";
-
   mensajes: any = [
   {
-    emisor: "id",
+    emisor: "usuario",
     texto: "Hola que tal"
   }, {
     emisor: "id",
     texto: "Todo bien y tú?"
   }, {
-    emisor: "id",
+    emisor: "usuario",
     texto: "Todo perfecto"
   }, {
     emisor: "id",
     texto: "Hola a todos"
   }, {
-    emisor: "id",
+    emisor: "usuario",
     texto: "Hola 2"
   },
   {
@@ -39,6 +38,14 @@ export class ChatbotComponent implements OnInit {
 
   enviarMensaje(){
     console.log(this.nuevoMensaje);
+
+    let mensaje=
+    {
+      emisor: "usuario",
+      texto: this.nuevoMensaje
+    }
+
+    this.mensajes.push(mensaje);
     this.nuevoMensaje = "";
   }
 
