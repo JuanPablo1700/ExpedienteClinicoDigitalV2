@@ -36,8 +36,9 @@ export class ChatbotComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  enviarMensaje(){
-    console.log(this.nuevoMensaje);
+  enviarMensaje(){  
+
+    if (this.nuevoMensaje == "") return;
 
     let mensaje=
     {
