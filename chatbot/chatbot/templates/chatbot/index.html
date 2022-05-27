@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<header class="row">
+    <div>
+      <a routerLink="/home">
+        <img src="https://cdn-user-icons.flaticon.com/13797/13797852/1635291083758.svg?token=exp=1653694257~hmac=d738becbf2459b8388ff07ed63b8d4ff" alt="logo" />
+      </a>
+    </div>
+    <div class="menu-name-img">
+      <p>Mi historial médico.</p>
+    </div>
+  </header>
+  <main>
+    <div class="grid-container-main">
+      <div class="txchatbot">
+        <p class="txt_chatbot">Chatbot</p>
+      </div>
+      <div class="chat">
+        <div class="chatMensajes" id="chatMensajes">
+          <!-- si es emisor darle la clase enviado -->
+          <p
+            *ngFor="let mensaje of mensajes" class="msj"
+            [ngClass]="persona==mensaje.emisor ? 'enviado' : 'recibido'"
+          >
+            {{ mensaje.texto }}
+          </p>
+        </div>
+  
+        <form class="contInputChat" (ngSubmit)="enviarMensaje()">
+          <input
+            type="text"
+            class="inputChat"
+            placeholder="Escribe aquí tu duda"
+            [(ngModel)]="nuevoMensaje"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </form>
+      </div>
+  
+      <div class="im">
+        <img
+          class="imgRobot"
+          src="https://img.freepik.com/vector-gratis/lindo-bot-decir-usuarios-hola-chatbot-saluda-consulta-online_80328-195.jpg?t=st=1653693251~exp=1653693851~hmac=c2bdec6c7acf9de10e3ed10affadf140f9f342871cfdce89472d18f69f16f607&w=740"
+          alt="imagen de robot asistente"
+        />
+      </div>
+    </div>
+    <!-- grid-container-main -->
+  </main>
+  <style>
+    header {
+        background-color: #146173;
+        height: 10rem;
+      }
+      
+      header p {
+        padding: 1rem;
+        color: #ffffff;
+      }
+      
+      header img {
+        height: 7rem;
+        margin: 1rem;
+      }
+      
+      header a img {
+        margin-top: 3rem;
+      }
+      
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .menu-name-img {
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+      }
+      
+      .menu-name-img p {
+        font-size: 3rem;
+      }
+      
+      .grid-container-main {
+        display: grid;
+        grid-template-areas:
+          "titulo titulo titulo"
+          "txt txt img";
+        grid-template-columns: 0.5fr 0.25fr 0.25fr;
+        grid-template-rows: 0.3fr 0.7fr;
+        height: 100%;
+        align-items: center;
+        margin: 15px;
+      }
+      
+      .txchatbot {
+        grid-area: titulo;
+      }
+      
+      .txt_chatbot {
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        color: #4995a6;
+        /* width:32.625rem;
+                height:10rem; */
+        top: 0em;
+        font-family: Roboto;
+        text-align: left;
+        font-size: 355%;
+      }
+      
+      .chat {
+        grid-area: txt;
+        border: #146173 2px solid;
+        height: 30rem;
+        width: 30rem;
+        display: grid;
+        grid-template-areas:
+          "conversacion"
+          "input";
+        grid-template-rows: 0.9fr 0.1fr;
+        margin-bottom: 15px;
+        background-color: #f3f2f4;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23146173' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+      
+      .chatMensajes {
+        overflow: auto;
+      }
+      
+      .chatMensajes::-webkit-scrollbar{
+        display: none;
+      }
+      
+      .contInputChat {
+        grid-area: input;
+        justify-content: center;
+        padding: 3px;
+      }
+      .inputChat {
+        width: 98%;
+        padding: 2px;
+      }
+      
+      .im {
+        grid-area: img;
+      }
+      
+      .imgRobot {
+        width: 20%;
+        margin-top: 0%;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        transition: all 30ms;
+      }
+      
+      .imgRobot:hover {
+        transform: translateY(-7px);
+      }
+      
+      .enviado{
+        display: block;
+        float: right;
+        background-color: #146173;
+        color:#ffffff;
+        width: auto;
+        border-radius: 10px;
+        text-align: left;
+        padding: 5px;
+        margin: 2px;
+        margin-left: 50%;
+      }
+      
+      .recibido{
+        display: block;
+        float: left;
+        background-color: gray;
+        color:#ffffff;
+        width: auto;
+        border-radius: 10px;
+        text-align: left;
+        padding: 5px;
+        margin: 3px;
+        margin-right: 50%;
+      }
+  </style>
+</html>
